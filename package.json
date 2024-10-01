@@ -3,9 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "init": "concurrently \"npm:init:dependencies\""
   },
   "dependencies": {
+    "@okta/jwt-verifier": "^4.0.1",
     "axios": "0.27.2",
     "cookie-parser": "1.4.6",
     "debug": "4.3.4",

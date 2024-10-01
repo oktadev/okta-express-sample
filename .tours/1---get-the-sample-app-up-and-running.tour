@@ -4,11 +4,11 @@
   "steps": [
     {
       "title": "Prerequisites",
-      "description": "okta-express-universal-logout-lab - ul-lab-start\n\n8 or g\nWe will build the Universal Logout (UL) endpoint on [an express sample app](https://github.com/oktadev/okta-express-universal-logout-lab) with OIDC support implemented. Go to the ul-lab-start branch and open codespaces.\nTroubleshooting tips: Before you begin, ensure you can run the sample application. We will add some code and test it along the way. \n\nInstall the necessary dependencies with the following command:\n\nnpm install\n\nRun the application with the following command.\n\nnpm start"
+      "description": "https://github.com/oktadev/okta-express-universal-logout-lab/tree/ul-lab-start\n\nWe will build the Universal Logout (UL) endpoint on [an express sample app](https://github.com/oktadev/okta-express-universal-logout-lab) with OIDC support implemented. Go to the ul-lab-start branch and open codespaces.\n\nTroubleshooting tips: Before you begin, ensure you can run the sample application. We will add some code and test it along the way. \n\nRun the application with the following command\n\n`npm start`\n\nor\n\nClick [here](command:workbench.action.debug.start)"
     },
     {
       "title": "Sign up with Okta",
-      "description": "If you don't already have an Okta account, you can sign up for one here under Workforce Identity Cloud – Developer Edition. \nYou'll also need to create an OIDC application, which you can do by following the instructions listed here under Setup your app. Set the Sign-in redirect URI as https://${CODESPACENAME}-3000.app.github.dev/authorization-code/callback. Save your client_id and client_secret; you'll need it in the next steps."
+      "description": "If you don't already have an Okta account, you can sign up for one here under Workforce Identity Cloud – Developer Edition. \nYou'll also need to create an OIDC application, which you can do by following the instructions listed here under Setup your app. Set the Sign-in redirect URI as https://${CODESPACENAME}-3000.app.github.dev/authorization-code/callback. Save your client_id and client_secret; you'll need it in the next steps.\n\nClick [here](command:codetour.sendTextToTerminal?[\\\"echo https://$CODESPACE_NAME-3000.app.github.dev/\"])"
     },
     {
       "file": ".okta.env",
@@ -17,7 +17,7 @@
     },
     {
       "title": "Create a test user",
-      "description": "To test whether UL works for our app, we'll create a new user on Okta whose account we will forcibly sign out. \nOpen the Admin Console for your org, and go to Directory > People. \n\nClick Add Person and create a person with the following properties:\nUser type: User\nFirst name: Trinity\nLast name: Anderson\nUsername: trinity@whiterabbit.fake\nActivation: Activate now\nEnable the option I will set password > Enter a password of your choice, and click Save.\n\nRefresh the page and click on Trinity Anderson's profile. Click the Assign Application button and assign Trinity to the UL OIDC App. \nLastly, test that the user can log in with the Okta."
+      "description": "To test whether UL works for our app, we'll create a new user on Okta whose account we will forcibly sign out. \nOpen the Admin Console for your org, and go to Directory > People. \n\nClick Add Person and create a person with the following properties:\\\nUser type: User\\\nFirst name: Trinity\\\nLast name: Anderson\\\nUsername: trinity@whiterabbit.fake\\\nActivation: Activate now\\\nEnable the option I will set password > Enter a password of your choice, and click Save.\n\nRefresh the page and click on Trinity Anderson's profile. Click the Assign Application button and assign Trinity to the UL OIDC App. \nLastly, test that the user can log in with the Okta."
     }
   ],
   "description": "Prerequisites - okta-express-universal-logout-lab - ul-lab-start 8 or g We will build the Universal Logout (UL) endpoint on [an express sample app](https://github.com/oktadev/okta-express-universal-logout-lab) with OIDC support implemented. Go to the ul-lab-start branch and open codespaces. Troubleshooting tips: Before you begin, ensure you can run the sample application. We will add some code and test it along the way.   Install the necessary dependencies with the following command:  npm install  Run the application with the following command.   npm start"
