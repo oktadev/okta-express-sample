@@ -4,7 +4,7 @@
   "steps": [
     {
       "title": "Prerequisites",
-      "description": "https://github.com/oktadev/okta-express-universal-logout-lab/tree/ul-lab-start\n\nWe will build the Universal Logout (UL) endpoint on [an express sample app](https://github.com/oktadev/okta-express-universal-logout-lab) with OIDC support implemented. Go to the ul-lab-start branch and open codespaces.\n\nTroubleshooting tips: Before you begin, ensure you can run the sample application. We will add some code and test it along the way. \n\nRun the application with the following command\n\n`npm start`\n\nor\n\nClick [here](command:workbench.action.debug.start)"
+      "description": "We will build the Universal Logout (UL) endpoint on [an express sample app](https://github.com/oktadev/okta-express-universal-logout-lab) with OIDC support implemented. Go to the ul-lab-start branch and open codespaces. You can find the completed branch here [ul-lab-complete](https://github.com/oktadev/okta-express-universal-logout-lab/tree/ul-lab-complete).\n\nTroubleshooting tips: Before you begin, ensure you can run the sample application. We will add some code and test it along the way. \n\nRun the application with the following command\n\n`npm start`\n\nor\n\nClick [here](command:workbench.action.debug.start)"
     },
     {
       "title": "Sign up with Okta",

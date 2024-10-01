@@ -8,8 +8,12 @@ var passport = require('passport');
 var qs = require('querystring');
 var { Strategy } = require('passport-openidconnect');
 const axios = require('axios');
-const universalLogoutRoute = require('./universalLogout.js');
-import OktaJwtVerifier from '@okta/jwt-verifier';
+
+
+//UL import requiremnts
+var {MemoryStore} = require('express-session')
+const store = new MemoryStore();
+var OktaJwtVerifier = require('@okta/jwt-verifier');
 
 // source and import environment variables
 require('dotenv').config({ path: '.okta.env' })
