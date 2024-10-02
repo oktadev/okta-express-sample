@@ -9,13 +9,18 @@
     },
     {
       "file": "app.js",
-      "description": "Then, instantiate it under your UL section. You'll need to include the issuer, the authorization server from which we expect the signed JWT to originate, and the public keys endpoint so the library can cryptographically match the signed token with the keys published at this endpoint. Using Okta as the IdP, you can find the issuer and keys endpoint information at the Okta Org Authorization Server's metadata endpoint - https://developer.okta.com/docs/concepts/auth-servers/#org-authorization-server-discovery-endpoints.",
+      "description": "Then, instantiate it under your UL section. You'll need to include the issuer, the authorization server from which we expect the signed JWT to originate, and the public keys endpoint so the library can cryptographically match the signed token with the keys published at this endpoint. Using Okta as the IdP, you can find the issuer and keys endpoint information at the [Okta Org Authorization Server's metadata endpoint](https://developer.okta.com/docs/concepts/auth-servers/#org-authorization-server). It will look something like this https://{yourOktaDomain}/.well-known/openid-configuration.",
       "line": 144
     },
     {
       "file": "app.js",
-      "description": "Next, we'll need to create a custom middleware called, tokenValidator, to get the signed JWT from the POST request body and validate it with the Okta JWT Verifier. The signed JWT method takes in two parameters: the JWT and expectedAud, which is your UL endpoint. ",
+      "description": "Next, we'll need to create a custom middleware called, tokenValidator, to get the signed JWT from the POST request body and validate it with the Okta JWT Verifier. The signed JWT method takes in two parameters: the JWT and expectedAud, which is your UL endpoint. Uncomment this line and add your Okta domain to the issuer and token keys endpoint. You can find this info by visiting your Okta org authorization server's OpenID Connect discovery url, https://{yourOktaDomain}/.well-known/openid-configuration. ",
       "line": 149
+    },
+    {
+      "file": "app.js",
+      "description": "Create your custom middleware here. Else find the [completed solution](https://github.com/oktadev/okta-express-universal-logout-lab/blob/42d6a2ba5e43e976612bd928bee750f084f39a9a/app.js#L143) and copy/paste here.",
+      "line": 153
     },
     {
       "file": "app.js",

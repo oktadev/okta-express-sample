@@ -145,10 +145,10 @@ app.use(function (err, req, res, next) {
 
 // Signed Jwt Validation
 
-const oktaJwtVerifier = new OktaJwtVerifier({
-  issuer: 'https://{yourOktaDomain}.com',
-  jwksUri: 'https://{yourOktaDomain}.com/oauth2/v1/keys',
-});
+// const oktaJwtVerifier = new OktaJwtVerifier({
+//   issuer: 'https://{yourOktaDomain}.com',
+//   jwksUri: 'https://{yourOktaDomain}.com/oauth2/v1/keys',
+// });
 
 // Code your custom middleware for signed JWT validation
 
