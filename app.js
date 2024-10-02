@@ -152,8 +152,6 @@ app.use(function (err, req, res, next) {
 
 // Code your custom middleware for signed JWT validation
 
-app.use(morgan('combined'));
-
 app.post('/global-token-revocation', (req, res) => {
   const httpStatus = 204;
 
