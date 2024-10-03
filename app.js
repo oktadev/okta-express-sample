@@ -8,11 +8,11 @@ var passport = require('passport');
 var qs = require('querystring');
 var { Strategy } = require('passport-openidconnect');
 const axios = require('axios');
+const codespaceName = process.env.CODESPACE_NAME;
 
-
-//UL import requiremnts
-var {MemoryStore} = require('express-session')
-const store = new MemoryStore();
+//UL import requirements
+const universalLogoutRoute = require('./universalLogout')
+const store = require('./session.Store')
 var OktaJwtVerifier = require('@okta/jwt-verifier');
 
 // source and import environment variables
@@ -42,6 +42,21 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+///////////////////////////////////////////////////////
+// Universal Logout Route
+
+// Signed Jwt Validation
+
+// const oktaJwtVerifier = new OktaJwtVerifier({
+//   issuer: 'https://{yourOktaDomain}.com',
+//   jwksUri: 'https://{yourOktaDomain}.com/oauth2/v1/keys',
+// });
+
+// Code your custom middleware for signed JWT validation
+
+////Universal Logout endpoint
+app.use('/', universalLogoutRoute);
+
 // https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfigurationRequest
 let logout_url, id_token;
 let _base = ORG_URL.slice(-1) == '/' ? ORG_URL.slice(0, -1) : ORG_URL;
@@ -60,7 +75,7 @@ axios
         userInfoURL: userinfo_endpoint,
         clientID: CLIENT_ID,
         clientSecret: CLIENT_SECRET,
-        callbackURL: 'http://localhost:3000/authorization-code/callback',
+        callbackURL: `https://${codespaceName}-3000.app.github.dev/authorization-code/callback`,
         scope: 'profile offline_access',
       }, (issuer, profile, context, idToken, accessToken, refreshToken, params, done) => {
         console.log(`OIDC response: ${JSON.stringify({
@@ -116,7 +131,7 @@ app.post('/logout', (req, res, next) => {
     if (err) { return next(err); }
     let params = {
       id_token_hint: id_token,
-      post_logout_redirect_uri: 'http://localhost:3000/'
+      post_logout_redirect_uri: `https://${codespaceName}-3000.app.github.dev`
     }
     res.redirect(logout_url + '?' + qs.stringify(params));
   });
@@ -138,50 +153,5 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-
-///////////////////////////////////////////////////////
-// Universal Logout Route
-
-// Signed Jwt Validation
-
-// const oktaJwtVerifier = new OktaJwtVerifier({
-//   issuer: 'https://{yourOktaDomain}.com',
-//   jwksUri: 'https://{yourOktaDomain}.com/oauth2/v1/keys',
-// });
-
-// Code your custom middleware for signed JWT validation
-
-app.post('/global-token-revocation', (req, res) => {
-  const httpStatus = 204;
-
-  // 400 If the request is malformed
-  if (!req.body) {
-    res.status(400);
-  }
-
-  // Find the user by email 
-
-  // 404 User not found
-  if (!user) {
-    res.sendStatus(404);
-  }
-
-  // Get all the user's session through MemoryStore
-  const storedSession = store.sessions;
-  const userId = user.id;
-  const sids = [];
-  Object.keys(storedSession).forEach((key) => {
-    const sess = JSON.parse(storedSession[key]);
-    if (sess.passport.user === userId) {
-      sids.push(key);
-    }
-  });
-
-
-  // End user session(s)
-  return res.sendStatus(httpStatus);
-});
-
 
 module.exports = app;

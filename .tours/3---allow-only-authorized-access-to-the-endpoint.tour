@@ -5,27 +5,22 @@
     {
       "file": "app.js",
       "description": "The cURL request from previous step should result in a 204 response confirming that a user named Trinity exists in the database. Sure, we got a successful response, but what is wrong here? This endpoint isn't secure; we've made it available for anyone to access. Let's fix this by adding authentication to protect this endpoint and establish trust between our server and any external service making a request to this route.\n\nUsing the OAuth 2.0 Authorization method Private key JWT, we'll need to verify that the tokens from Okta are valid. Okta has a library that can handle this for us, so let's install the [Okta JWT Verifier library](https://www.npmjs.com/package/@okta/jwt-verifier).",
-      "line": 142
+      "line": 48
     },
     {
       "file": "app.js",
-      "description": "Then, instantiate it under your UL section. You'll need to include the issuer, the authorization server from which we expect the signed JWT to originate, and the public keys endpoint so the library can cryptographically match the signed token with the keys published at this endpoint. Using Okta as the IdP, you can find the issuer and keys endpoint information at the [Okta Org Authorization Server's metadata endpoint](https://developer.okta.com/docs/concepts/auth-servers/#org-authorization-server). It will look something like this https://{yourOktaDomain}/.well-known/openid-configuration.",
-      "line": 144
+      "description": "Instantiate the `OktaJwtVerifier`. To do this, you'll need to include the issuer (the authorization server from which we expect the signed JWT to originate) and the public keys endpoint so the library can cryptographically match the signed token with the keys used to sign it. Using Okta as the IdP, you can find the issuer and keys endpoint information at the [Okta Org Authorization Server's metadata endpoint](https://developer.okta.com/docs/concepts/auth-servers/#org-authorization-server). It will look something like this https://{yourOktaDomain}/.well-known/openid-configuration and you can visit it directly from the browser. Uncomment the `oktaJwtVerifier` object and fill in the missing information found in your Okta org authorization server well-known endpoint.",
+      "line": 50
     },
     {
       "file": "app.js",
-      "description": "Next, we'll need to create a custom middleware called, tokenValidator, to get the signed JWT from the POST request body and validate it with the Okta JWT Verifier. The signed JWT method takes in two parameters: the JWT and expectedAud, which is your UL endpoint. Uncomment this line and add your Okta domain to the issuer and token keys endpoint. You can find this info by visiting your Okta org authorization server's OpenID Connect discovery url, https://{yourOktaDomain}/.well-known/openid-configuration. ",
-      "line": 149
+      "description": "Next, create a custom middleware called, tokenValidator, to get the signed JWT from the POST request body and validate it with the Okta JWT Verifier. Hint: review the [`OktaJwtVerifier` library](https://www.npmjs.com/package/@okta/jwt-verifier) to guide you. Otherwise, you can find the [completed solution](https://github.com/oktadev/okta-express-universal-logout-lab/blob/42d6a2ba5e43e976612bd928bee750f084f39a9a/app.js#L143) and copy/paste here.",
+      "line": 55
     },
     {
       "file": "app.js",
-      "description": "Create your custom middleware here. Else find the [completed solution](https://github.com/oktadev/okta-express-universal-logout-lab/blob/42d6a2ba5e43e976612bd928bee750f084f39a9a/app.js#L143) and copy/paste here.",
-      "line": 153
-    },
-    {
-      "file": "app.js",
-      "description": "Don't forget to pass the tokenValidator middleware to the global token revocation endpoint.",
-      "line": 153
+      "description": "Don't forget to pass the `tokenValidator` middleware to the global token revocation endpoint.",
+      "line": 58
     }
   ]
 }

@@ -8,16 +8,16 @@
     },
     {
       "title": "Sign up with Okta",
-      "description": "In the Okta Heropa VM, open the credentials panel by clicking the arrow to the right of the window. From here, you will get a link to your Oktapreview Org with your username and login. Open a new browser window outside of the VM and login to your Okta account using the credentials provided.\n\nOnce you've logged in, you'll also need to create an OIDC application, which you can do by following the instructions listed here under [Setup your app](https://developer.okta.com/docs/guides/implement-grant-type/authcode/main/#set-up-your-app). Be sure to set the Sign-in redirect URI as https://${CODESPACENAME}-3000.app.github.dev/authorization-code/callback. Save your client_id and client_secret; you'll need it in the next steps."
+      "description": "In the Okta Heropa VM, open the credentials panel by clicking the arrow to the right of the window. From here, you will get a link to your Oktapreview Org with your username and login. Open a new browser window outside of the VM and login to your Okta account using the credentials provided.\n\nOnce you've logged in, you'll also need to create an OIDC application, which you can do by following the instructions listed here under [Setup your app](https://developer.okta.com/docs/guides/implement-grant-type/authcode/main/#set-up-your-app). In the OIDC application setup, be sure to set the Sign-in redirect URI as https://${CODESPACENAME}-3000.app.github.dev/authorization-code/callback. You can get the CODESPACENAME by entering echo \"https://${CODESPACE_NAME}-3000.app.github.dev/authorization-code/callback\" to the terminal or copy the url from the browser directly. Under assignments select `Allow everyone in your organization to access` and enable `Federation Broker Mode`. Remember to click `Save` when you are done! Lastly, save your client_id and client_secret, you'll need it in the next steps."
     },
     {
       "file": ".okta.env",
-      "description": "Add your OIDC integration details to the app\nUnder the .okta.env file, add the following with your Okta Org details and the OIDC app. \n\nORG_URL=${CLI_OKTA_ORG_URL}\nCLIENT_ID=${CLI_OKTA_CLIENT_ID}\nCLIENT_SECRET=${CLI_OKTA_CLIENT_SECRET}",
+      "description": "Add your OIDC integration details (i.e. your Okta org, your OIDC app client id and secret) to the `.okta.env file`. All variables must be saved as strings.\n",
       "line": 1
     },
     {
       "title": "Create a test user",
-      "description": "To test whether UL works for our app, we'll create a new user on Okta whose account we will forcibly sign out. \nOpen the Admin Console for your org, and go to Directory > People. \n\nClick Add Person and create a person with the following properties:\\\nUser type: User\\\nFirst name: Trinity\\\nLast name: Anderson\\\nUsername: trinity@whiterabbit.fake\\\nActivation: Activate now\\\nEnable the option I will set password > Enter a password of your choice, and click Save.\n\nRefresh the page and click on Trinity Anderson's profile. Click the Assign Application button and assign Trinity to the UL OIDC App. \nLastly, test that the user can log in with the Okta."
+      "description": "To test whether UL works for our app, we'll create a new user on Okta whose account we will forcibly sign out. \nOpen the Admin Console for your org, and go to Directory > People. \n\nClick Add Person and create a person with the following properties:\\\nUser type: User\\\nFirst name: Trinity\\\nLast name: Anderson\\\nUsername: trinity@whiterabbit.fake\\\nActivation: Activate now\\\nEnable the option I will set password > Enter a password of your choice, and click Save.\n\nRefresh the page and click on Trinity Anderson's profile. Now, using an incognito window navigate to your application and sign into the web application in through Okta using your test user's credentials."
     }
   ]
 }
