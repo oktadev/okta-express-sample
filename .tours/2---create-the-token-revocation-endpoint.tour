@@ -4,7 +4,7 @@
   "steps": [
     {
       "file": "universalLogout.js",
-      "description": "Add code here to find a user based on information received from the request body. Otherwise, you can find the [completed code here](https://github.com/oktadev/okta-express-universal-logout-lab/blob/42d6a2ba5e43e976612bd928bee750f084f39a9a/app.js#L182). \n\nAs per the Global Token Revocation Specification, we are expecting an external request to end a user's session based on the email used to sign in with to their IdP. The request will look like the following:\n\n\nPOST /global-token-revocation\\\nHost: example.com\\\nContent-Type: application/json\\\n{\\\n  \"sub_id\": {\\\n    \"format\": \"email\",\\\n    \"email\": \"user@example.com\"\\\n  }\\\n}\n\nOpen a new terminal window and send the following cURL request to check your code. \n\n```\ncurl --request POST \\\n  --url http://{yourCodespaceUrl}/global-token-revocation \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n  \"sub_id\": {\n    \"format\": \"email\",\n    \"email\": \"trinity@whiterabbit.fake\"\n  }\n}'\n```\n\nThis request will result in a 204 response confirming that a user named Trinity exists in our database. And sure, we got a successful response, but what is wrong here? This endpoint isn't secure; we've made it available for anyone to access. Let's fix this by adding authentication to protect this endpoint and establish trust between our server and any external service making a request to this route.",
+      "description": "Add code here to find a user based on information received from the request body. Otherwise, you can find the [completed code here](https://github.com/oktadev/okta-express-universal-logout-lab/blob/f63e61fab95e94111324b0d87704391aef4c0fdb/universalLogout.js#L14). ",
       "line": 15
     },
     {
@@ -15,7 +15,11 @@
     {
       "file": "universalLogout.js",
       "description": "Loop through the list of `sids` and delete all active sessions associated with the user.",
-      "line": 35
+      "line": 33
+    },
+    {
+      "title": "Test with cURL",
+      "description": "Now test your code by making a cURL request. As per the [Global Token Revocation Specification](https://datatracker.ietf.org/doc/html/draft-parecki-oauth-global-token-revocation#name-revocation-request), we are expecting an external request to end a user's session based on the email used to sign in to the app through their IdP. The request will look like the following:\n\n\nPOST /global-token-revocation\\\nHost: example.com\\\nContent-Type: application/json\\\n{\\\n  \"sub_id\": {\\\n    \"format\": \"email\",\\\n    \"email\": \"user@example.com\"\\\n  }\\\n}\n\nOpen a new terminal window, be sure to set the [port to public within Codespaces](https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace) and send the following cURL request to check your code. \n\n```\ncurl --request POST \\\n  --url http://{yourCodespaceUrl}-3000.app.github.dev/global-token-revocation/global-token-revocation \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n  \"sub_id\": {\n    \"format\": \"email\",\n    \"email\": \"trinity@whiterabbit.fake\"\n  }\n}'\n```\n\nThis request will result in a 204 response confirming that a user named Trinity exists and her sessions have been deleted. And sure, we got a successful response, but what is wrong here? This endpoint isn't secure; we've made it available for anyone to access. Let's fix this by adding authentication to protect this endpoint and establish trust between our server and any external service making a request to this route."
     }
   ]
 }

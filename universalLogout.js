@@ -12,7 +12,7 @@ universalLogoutRoute.post('/global-token-revocation', async (req, res) => {
     res.status(400);
   }
 
-  // Find the user by email linked to the org id associated with the API key provided
+  // Find the user by email
 
 
   // 404 User not found
@@ -22,18 +22,17 @@ universalLogoutRoute.post('/global-token-revocation', async (req, res) => {
 
   // End user session
   const storedSession = store.sessions;
-  const userId = user.id;
   const sids = [];
   Object.keys(storedSession).forEach((key) => {
     const sess = JSON.parse(storedSession[key]);
-    if (sess.passport.user === userId) {
+    if (sess.passport.user.username === user) {
       sids.push(key);
     }
   });
 
-  // Add your code here to end a user's session
+// Add your code here to end a user's session
 
-  //console.log('User session deleted')
+//console.log('User session deleted')
   
   return res.sendStatus(httpStatus);
 });
@@ -44,7 +43,6 @@ universalLogoutRoute.use((err,req,res,next) => {
     return res.sendStatus(404)
   }
 })
-
 
 
 module.exports = universalLogoutRoute;
