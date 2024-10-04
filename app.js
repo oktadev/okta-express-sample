@@ -12,7 +12,7 @@ const codespaceName = process.env.CODESPACE_NAME;
 
 //UL import requirements
 const universalLogoutRoute = require('./universalLogout')
-const store = require('./session.Store')
+const store  = require('./sessionStore');
 var OktaJwtVerifier = require('@okta/jwt-verifier');
 
 // source and import environment variables

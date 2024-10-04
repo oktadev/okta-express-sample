@@ -1,6 +1,6 @@
 var express = require('express');
 const universalLogoutRoute = express.Router();
-var { store } = require('./sessionStore')
+const store  = require('./sessionStore');
 
 
 universalLogoutRoute.post('/global-token-revocation', async (req, res) => {
@@ -11,10 +11,9 @@ universalLogoutRoute.post('/global-token-revocation', async (req, res) => {
   if (!req.body) {
     res.status(400);
   }
-
+  console.log(req.body)
   // Find the user by email
-
-
+  
   // 404 User not found
   if (!user) {
     res.sendStatus(404);
@@ -33,7 +32,7 @@ universalLogoutRoute.post('/global-token-revocation', async (req, res) => {
 // Add your code here to end a user's session
 
 //console.log('User session deleted')
-  
+
   return res.sendStatus(httpStatus);
 });
 

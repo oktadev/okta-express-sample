@@ -4,8 +4,8 @@
   "steps": [
     {
       "file": "universalLogout.js",
-      "description": "Add code here to find a user based on information received from the request body. Otherwise, you can find the [completed code here](https://github.com/oktadev/okta-express-universal-logout-lab/blob/f63e61fab95e94111324b0d87704391aef4c0fdb/universalLogout.js#L14). ",
-      "line": 15
+      "description": "Add code here to find a user based on information received from the request body. Try on your own or find the [completed code here](https://github.com/oktadev/okta-express-universal-logout-lab/blob/f63e61fab95e94111324b0d87704391aef4c0fdb/universalLogout.js#L14). ",
+      "line": 16
     },
     {
       "file": "universalLogout.js",
@@ -14,8 +14,18 @@
     },
     {
       "file": "universalLogout.js",
-      "description": "Loop through the list of `sids` and delete all active sessions associated with the user.",
-      "line": 33
+      "description": "Loop through the list of `sids` and delete all active sessions associated with the user. Try on your own or find the [completed code here](https://github.com/oktadev/okta-express-universal-logout-lab/blob/f63e61fab95e94111324b0d87704391aef4c0fdb/universalLogout.js#L32). ",
+      "line": 33,
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 90
+        },
+        "end": {
+          "line": 1,
+          "character": 105
+        }
+      }
     },
     {
       "title": "Test with cURL",
