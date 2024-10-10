@@ -41,17 +41,8 @@
     {
       "file": "app.js",
       "description": "## Pass middleware to the global token revocation endpoint\n\nHere we pass the `tokenValidator` middleware to the global token revocation endpoint.",
-      "line": 70,
-      "selection": {
-        "start": {
-          "line": 63,
-          "character": 1
-        },
-        "end": {
-          "line": 70,
-          "character": 25
-        }
-      }
+      "line": 56
+    
     }
   ]
 }

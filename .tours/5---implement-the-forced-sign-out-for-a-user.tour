@@ -6,14 +6,14 @@
     {
       "file": "app.js",
       "description": "## Change ensureLoggedIn\n\n*Notice the `app.js` file has been opened for you.*\n\nAlthough the user no longer has an active session as confirmed by the backend with a 401 error, we'll need to make sure this info is relayed to the frontend and the user is redirected to the main login page to reauthenticate.\n\nThe `ensureLoggedIn` function has been highlighted for you above. It automatically logs a user in when they are authenticated. If they are not authenticated, they are redirected to the login page. We don't want to log the user in automatically, instead we want them to visit the main page to login again via their IdP.\n\n\nLet's replace this function with `checkLoggedIn`. You can do this manually or click the **Insert Code** link below (only click once) to do it automatically.\n\n```js \nfunction checkLoggedIn(req, res, next) {\n if (req.isAuthenticated()) {\n   return next();\n }\n\n res.redirect('/')\n}\n```\n\nClick [here](command:workbench.action.files.save) to save your changes to this file.",
-      "line": 139,
+      "line": 111,
       "selection": {
         "start": {
-          "line": 1,
-          "character": 11
+          "line": 105,
+          "character": 1
         },
         "end": {
-          "line": 1,
+          "line": 111,
           "character": 25
         }
       },
@@ -22,14 +22,14 @@
     {
       "file": "app.js",
       "description": "## Update function call\n\nLet's update the function call to `ensureLogged` in to the newly named function `checkLoggedIn`. Replace the highlighted selection above with `checkLoggedIn`.\n\nAfter you've done this, test your Universal Login functionality one more time!",
-      "line": 147,
+      "line": 125,
       "selection": {
         "start": {
-          "line": 147,
+          "line": 125,
           "character": 21
         },
         "end": {
-          "line": 147,
+          "line": 125,
           "character": 35
         }
       }
