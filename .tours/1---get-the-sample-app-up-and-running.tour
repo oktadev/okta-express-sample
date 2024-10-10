@@ -5,7 +5,7 @@
   "steps": [
     {
       "title": "Prerequisites",
-      "description": "## Prequisites\n\nThis workspace contains an express sample app with OIDC support implemented. In this lab, we will build the Universal Logout (UL) endpoint on this app.\n\n### Troubleshooting tips: Before you begin, ensure you can run the sample application doing the following:\n\n1. Open up the terminal tab within Codespaces.\n\n2. Click [here](command:codetour.sendTextToTerminal?[\"npm start\"]) to run the sample application.\n>Note this runs the Terminal command: `npm start`.\n\n3. Once you've verified the application compiles and runs, press Ctrl+C in the Terminal to stop the execution of the app.\n\nAs we move through the lab and edit the app, we will test it incrementally."
+      "description": "## Prequisites\n\nThis workspace contains an express sample app with OIDC support implemented. In this lab, we will build the Universal Logout (UL) endpoint on this app.\n\n### Troubleshooting: \nAs we move through the lab and edit the app, we will test it incrementally."
     },
     {
       "title": "Set up an OIDC app integration in Okta",
