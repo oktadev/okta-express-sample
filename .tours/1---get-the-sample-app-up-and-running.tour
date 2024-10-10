@@ -1,6 +1,7 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
   "title": "1 - Get the sample app up and running",
+  "nextTour": "2 - Build a Universal Logout endpoint to find a user and their active sessions",
   "steps": [
     {
       "title": "Prerequisites",

@@ -1,6 +1,7 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
   "title": "6 - Continue adding more features to your SaaS app!",
+  "nextTour": "7 - Resources",
   "steps": [
     {
       "title": "Continue the enterprise-ready journey!",

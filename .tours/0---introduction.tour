@@ -1,6 +1,7 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
   "title": "0 - Dev Lab: Universal Logout ",
+  "nextTour": "1 - Get the sample app up and running",
   "steps": [
     {
       "title": "Introduction",

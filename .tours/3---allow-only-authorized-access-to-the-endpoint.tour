@@ -1,6 +1,7 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
   "title": "3 - Allow only authorized access to the endpoint",
+  "nextTour": "4 - Test token revocation endpoint with Okta",
   "steps": [
     {
       "file": "app.js",

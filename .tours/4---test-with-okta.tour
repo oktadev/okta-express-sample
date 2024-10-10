@@ -1,6 +1,7 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
   "title": "4 - Test token revocation endpoint with Okta",
+  "nextTour": "5 - Redirect the user back to login",
   "steps": [
     {
       "title": "Set app port to public",

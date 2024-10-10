@@ -1,6 +1,7 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
   "title": "5 - Redirect the user back to login",
+  "nextTour": "6 - Continue adding more features to your SaaS app!",
   "steps": [
     {
       "file": "app.js",
