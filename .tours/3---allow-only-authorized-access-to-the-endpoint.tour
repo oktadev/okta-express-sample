@@ -4,23 +4,53 @@
   "steps": [
     {
       "file": "app.js",
-      "description": "The cURL request from previous step should result in a 204 response confirming that a user named Trinity exists in the database. Sure, we got a successful response, but what is wrong here? This endpoint isn't secure; we've made it available for anyone to access. Let's fix this by adding authentication to protect this endpoint and establish trust between our server and any external service making a request to this route.\n\nUsing the OAuth 2.0 Authorization method Private key JWT, we'll need to verify that the tokens from Okta are valid. Okta has a library that can handle this for us, so let's install the [Okta JWT Verifier library](https://www.npmjs.com/package/@okta/jwt-verifier).",
-      "line": 48
+      "description": "## Signed JWT validation\n\n*Notice that `app.js` has been opened here for you.*\n\nThe cURL request from previous step should result in a 204 response confirming that a user named Trinity exists in the database. Sure, we got a successful response, but this endpoint isn't secure! We've made it available for anyone to access. Let's fix this by adding authentication to protect this endpoint and establish trust between our server and any external service making a request to this route.\n\nUsing the OAuth 2.0 Authorization method Private key JWT, we'll need to verify that the tokens from Okta are valid. Okta has a library that can handle this for us, so let's install the [Okta JWT Verifier library](https://www.npmjs.com/package/@okta/jwt-verifier).",
+      "line": 48,
+      "selection": {
+        "start": {
+          "line": 50,
+          "character": 1
+        },
+        "end": {
+          "line": 53,
+          "character": 25
+        }
+      }
     },
     {
       "file": "app.js",
-      "description": "Instantiate the `OktaJwtVerifier`. To do this, you'll need to include the issuer (the authorization server from which we expect the signed JWT to originate) and the public keys endpoint so the library can cryptographically match the signed token with the keys used to sign it. Using Okta as the IdP, you can find the issuer and keys endpoint information at the [Okta Org Authorization Server's metadata endpoint](https://developer.okta.com/docs/concepts/auth-servers/#org-authorization-server). It will look something like this https://{yourOktaDomain}/.well-known/openid-configuration and you can visit it directly from the browser. Uncomment the `oktaJwtVerifier` object and fill in the missing information found in your Okta org authorization server well-known endpoint.",
-      "line": 50
+      "description": "## Instantiate the OktaJwtVerifier\n\n*Notice that `app.js` has been opened here for you.*\n\nTo do instantiate the `OktaJwtVerifier`, you'll need to include the issuer (the authorization server from which we expect the signed JWT to originate) and the public keys endpoint so the library can cryptographically match the signed token with the keys used to sign it. \n\nUsing Okta as the IdP, you can find the issuer and keys endpoint information at the [Okta Org Authorization Server's metadata endpoint](https://developer.okta.com/docs/concepts/auth-servers/#org-authorization-server). \n\nIt will look something like this `https://{yourOktaDomain}/.well-known/openid-configuration` and you can visit it directly from the browser. \n\nUncomment the `oktaJwtVerifier` object and fill in the missing information found in your Okta org authorization server well-known endpoint.",
+      "line": 53,
+      "selection": {
+        "start": {
+          "line": 50,
+          "character": 1
+        },
+        "end": {
+          "line": 53,
+          "character": 25
+        }
+      }
     },
     {
       "file": "app.js",
-      "description": "Next, create a custom middleware called, tokenValidator, to get the signed JWT from the POST request body and validate it with the Okta JWT Verifier. Hint: review the [`OktaJwtVerifier` library](https://www.npmjs.com/package/@okta/jwt-verifier) to guide you. Otherwise, you can find the [completed solution](https://github.com/oktadev/okta-express-universal-logout-lab/blob/42d6a2ba5e43e976612bd928bee750f084f39a9a/app.js#L143) and copy/paste here.",
-      "line": 55
+      "description": "## Add the custom token validating middleware\n\nNext, create a custom middleware called, `tokenValidator`, to get the signed JWT from the `POST` request body and validate it with the Okta JWT Verifier. \n\nTo try this on your own, review the [`OktaJwtVerifier` library](https://www.npmjs.com/package/@okta/jwt-verifier) to guide you. \n\nOtherwise, you can click the **Insert Code** link (only click once) below to insert the code snippet that will do the job:\n\n```js\nconst tokenValidator = async function (req, res, next) {\n  const authHeaders = req.headers.authorization;\n  if (!authHeaders) {\n    return res.sendStatus(401);\n  }\n  const parts = authHeaders.split(' ');\n  const jwt = parts[1];\n  const expectedAud =\n    'https://potential-zebra-qwxg6946v29w5w-3000.app.github.dev/global-token-revocation';\n\n  try {\n    const verifiedJwt = await oktaJwtVerifier.verifyAccessToken(\n      jwt,\n      expectedAud\n    );\n    console.log(verifiedJwt.claims);\n  } catch (err) {\n    console.log(err);\n    return res.sendStatus(401);\n  }\n  \n  next();\n};\n```\n\nClick [here](command:workbench.action.files.save) to save your changes to this file.",
+      "line": 78
     },
     {
       "file": "app.js",
-      "description": "Don't forget to pass the `tokenValidator` middleware to the global token revocation endpoint.",
-      "line": 58
+      "description": "## Pass middleware to the global token revocation endpoint\n\nHere we pass the `tokenValidator` middleware to the global token revocation endpoint.",
+      "line": 70,
+      "selection": {
+        "start": {
+          "line": 63,
+          "character": 1
+        },
+        "end": {
+          "line": 70,
+          "character": 25
+        }
+      }
     }
   ]
 }
