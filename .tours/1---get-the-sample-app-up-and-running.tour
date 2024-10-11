@@ -9,7 +9,7 @@
     },
     {
       "title": "Set up an OIDC app integration in Okta",
-      "description": "## Set up an OIDC app integration in Okta\n\nIn the Okta Heropa VM, open the credentials panel by clicking the arrow to the right of the window. From here, you will get a link to your Okta preview org with your username and login. Open a new incognito browser window outside of the VM and login to your Okta account using the credentials provided.\n\nOnce you've logged in, you'll also need to create an OIDC application, which you can do by following the instructions listed here under [Set up your app](https://developer.okta.com/docs/guides/implement-grant-type/authcode/main/#set-up-your-app).  \n\n### When you get to the step for setting the Sign-in redirect URIs (Step 7), do the following: \n\n1. Click [here](command:codetour.sendTextToTerminal?[\"echo https://$CODESPACE_NAME-3000.app.github.dev/api/auth/callback\"]) and copy the URL that prints here in the Terminal. \n>Note this runs the following command: `echo https://${CODESPACE_NAME}-3000.app.github.dev/authorization-code/callback`.\n\n2. Paste the URL into the Sign-in redirect URIs field in your Okta app integration form.\n\n3. Under **Assignments > Controlled** access select **Skip group assignment for now**.\n\n4. Remember to click **Save** when you are done!\n\n5. ⚠️ **Important**: Notice that you now see your app's client credentials. Stay on this page. You will use the Client ID and Client Secret for the following step.",
+      "description": "## Set up an OIDC app integration in Okta\n\nIn the Okta Heropa VM, open the credentials panel by clicking the arrow to the right of the window. From here, you will get a link to your Okta preview org with your username and login. Open a new incognito browser window outside of the VM and login to your Okta account using the credentials provided.\n\nOnce you've logged in, you'll also need to create an OIDC application, which you can do by following the instructions listed here under [Set up your app](https://developer.okta.com/docs/guides/implement-grant-type/authcode/main/#set-up-your-app).  \n\n### When you get to the step for setting the Sign-in redirect URIs (Step 7), do the following: \n\n1. Click [here](command:codetour.sendTextToTerminal?[\"echo https://$CODESPACE_NAME-3000.app.github.dev/api/auth/callback\"]) and copy the URL that prints here in the Terminal. \n>Note this runs the following command: `echo https://${CODESPACE_NAME}-3000.app.github.dev/authorization-code/callback`.\n\n2. Paste the URL into the **Sign-in** redirect URIs field in your Okta app integration form.\n\n1. Click [here](command:codetour.sendTextToTerminal?[\"echo https://$CODESPACE_NAME-3000.app.github.dev\"]) and copy the URL that prints here in the Terminal. \n>Note this runs the following command: `echo https://${CODESPACE_NAME}-3000.app.github.dev/authorization-code/callback`.\n\n2. Paste the URL into the **Sign-out** redirect URIs field in your Okta app integration form.\n\n\n3. Under **Assignments > Controlled** access select **Skip group assignment for now**.\n\n4. Remember to click **Save** when you are done!\n\n5. ⚠️ **Important**: Notice that you now see your app's client credentials. Stay on this page. You will use the Client ID and Client Secret for the following step.",
       "selection": {
         "start": {
           "line": 1,
@@ -66,6 +66,10 @@
           "character": 34
         }
       }
+    },
+    {
+      "title": "Assignh user the app",
+      "description": "## Assign user the app\n\n1. Select the new user **Trinity Anderson** you just created (you may need to refresh the page to see the new user).\n1. Select **Assign Applications**.\n1. Assign this user the **UL App**\n1. Select **Save and Go Back**."
     }
   ]
 }
