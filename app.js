@@ -36,7 +36,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'CanYouLookTheOtherWay',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  store
 }));
 
 app.use(passport.initialize());
