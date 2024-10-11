@@ -52,6 +52,14 @@
           "character": 37
         }
       }
+    },
+    {
+      "title": "Relaunch your app",
+      "description": "## Relaunch your app\n\n1. Go to the Terminal tab where you initially ran the `npm start` command. Press Ctrl+C to stop its execution.\n\n1. Click [here](command:codetour.sendTextToTerminal?[\"npm start\"]) to re-run your app.\n> This issues the command `npm start` to your Terminal. \n\n1. Click on the PORTS panel within this window.\n\n1. You will see your app running on port 3000 here. Right click on this entry and select **Port visibility** > **Public**.\n\n1. Click the icon of a globe to open your app in a new tab.\n\n1. Click the **Login** button and login using the credentials you set up for **trinity@whiterabbit.fake**."
+    },
+    {
+      "title": "Test Universal Logout from the application",
+      "description": "## Test Universal Logout from the application\n\n1. Select the **Logout** button.\n> Recall that this route uses `universalLogout`, which calls our Universal Logout endpoint.\n1. Trinity's sessions are now ended."
     }
   ]
 }
