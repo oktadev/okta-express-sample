@@ -70,6 +70,10 @@
           "character": 203
         }
       }
+    },
+    {
+      "title": "Test user's session",
+      "description": "## Test user's session\n\n1. Return to the tab where you logged Trinity into your app.\n1. Refresh the page.\n>The user is no longer logged in due to the cURL request issued."
     }
   ]
 }
