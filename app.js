@@ -55,7 +55,7 @@ app.use(passport.session());
 // Code your custom middleware for signed JWT validation
 
 ////Universal Logout endpoint
-app.use('/', universalLogoutRoute);
+app.use('/logout', universalLogoutRoute);
 
 // https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfigurationRequest
 let logout_url, id_token;
