@@ -5,7 +5,7 @@
   "steps": [
     {
       "title": "Prerequisites",
-      "description": "## Prequisites\n\nThis workspace contains an express sample app with OIDC support implemented. In this lab, we will build the Universal Logout (UL) endpoint on this app.\n\n### Troubleshooting: \nAs we move through the lab and edit the app, we will test it incrementally."
+      "description": "## Prequisites\n\nThis workspace contains an Express sample app with OIDC support implemented. In this lab, we will build the Universal Logout (UL) endpoint for this app.\n\n### Troubleshooting: \nAs we move through the lab and edit the app, we will test it incrementally."
     },
     {
       "title": "Set up an OIDC app integration in Okta",
