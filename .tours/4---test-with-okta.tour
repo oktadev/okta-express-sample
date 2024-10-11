@@ -4,8 +4,8 @@
   "nextTour": "5 - Redirect the user back to login",
   "steps": [
     {
-      "title": "Set app port to public",
-      "description": "## Set app port to public\n\nNow that the app has a secure, working UL endpoint. In this section, we'll test the endpoint with Okta.\n\n1. Here in Codespaces, select the PORTS tab below.\n2. Set the [port visibility to public](https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace). \n>This allows requests from Okta to be forwarded to the public address provided by GitHub Codespaces."
+      "title": "Relaunch your app",
+      "description": "## Relaunch your app\n\n1. Go to the Terminal tab where you initially ran the `npm start` command. Press Ctrl+C to stop its execution.\n\n1. Click [here](command:codetour.sendTextToTerminal?[\"npm start\"]) to re-run your app.\n> This issues the command `npm start` to your Terminal. \n\n1. Click on the PORTS panel within this window.\n\n1. You will see your app running on port 3000 here. Right click on this entry and select **Port visibility** > **Public**.\n\n1. Click the icon of a globe to open your app in a new tab.\n\n1. Click the **Login** button and login using the credentials you set up for **trinity@whiterabbit.fake**."
     },
     {
       "title": "Provide revocation endpoint info to the Okta",

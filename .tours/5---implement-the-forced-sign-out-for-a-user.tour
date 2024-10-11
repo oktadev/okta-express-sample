@@ -21,7 +21,7 @@
     },
     {
       "file": "app.js",
-      "description": "## Update function call\n\nLet's update the function call to `ensureLogged` in to the newly named function `checkLoggedIn`. Replace the highlighted selection above with `checkLoggedIn`.\n\nAfter you've done this, test your Universal Login functionality one more time!",
+      "description": "## Update function call\n\nLet's update the function call to `ensureLogged` in to the newly named function `checkLoggedIn`. Replace the highlighted selection above with `checkLoggedIn`.\n\nAfter you've done this, test your Universal Login functionality one more time by repeating the steps in **Tour 4 - Test token revocation with Okta**.",
       "line": 170,
       "selection": {
         "start": {
