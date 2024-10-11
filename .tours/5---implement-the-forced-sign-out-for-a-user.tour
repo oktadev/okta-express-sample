@@ -22,14 +22,14 @@
     {
       "file": "app.js",
       "description": "## Update function call\n\nLet's update the function call to `ensureLogged` in to the newly named function `checkLoggedIn`. Replace the highlighted selection above with `checkLoggedIn`.\n\nAfter you've done this, test your Universal Login functionality one more time!",
-      "line": 125,
+      "line": 170,
       "selection": {
         "start": {
-          "line": 125,
+          "line": 170,
           "character": 21
         },
         "end": {
-          "line": 125,
+          "line": 170,
           "character": 35
         }
       }
