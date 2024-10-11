@@ -48,8 +48,8 @@ app.use(passport.session());
 // Signed Jwt Validation
 
 // const oktaJwtVerifier = new OktaJwtVerifier({
-//   issuer: 'https://{yourOktaDomain}.com',
-//   jwksUri: 'https://{yourOktaDomain}.com/oauth2/v1/keys',
+//   issuer: `${ORG_URL}`,
+//   jwksUri: `${ORG_URL}/oauth2/v1/keys`,
 // });
 
 // Code your custom middleware for signed JWT validation
