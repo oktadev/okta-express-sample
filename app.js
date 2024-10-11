@@ -58,7 +58,7 @@ app.use(passport.session());
 app.use('/logout', universalLogoutRoute);
 
 // https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfigurationRequest
-let logout_url, id_token;
+let logout_url, id_token, access_token;
 let _base = ORG_URL.slice(-1) == '/' ? ORG_URL.slice(0, -1) : ORG_URL;
 axios
   .get(`${_base}/.well-known/openid-configuration`)
@@ -83,6 +83,7 @@ axios
           accessToken, refreshToken, params
         }, null, 2)}\n*****`);
         id_token = idToken;
+        access_token = accessToken;
         return done(null, profile);
       }));
     }
