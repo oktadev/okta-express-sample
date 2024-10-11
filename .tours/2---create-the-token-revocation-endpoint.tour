@@ -5,7 +5,7 @@
   "steps": [
     {
       "file": "universalLogout.js",
-      "description": "## Global token revocation\n\n*Notice that `universalLogout.js` has been opened here for you.*\n\nDuring Universal Logout, we will need to revoke all tokens and sessions for a specified user. Notice we are building the [`/global-token-revocation`](https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/GlobalTokenRevocation/) endpoint here.\n\nThis will initiate the global revocation of all tokens and sessions for a specified user enabling external Identity Providers to trigger a comprehensive sign-out process. This includes executing IdP-initiated sign-out flows across all applications that are using global token revocation and requiring users to re-authenticate to access protected resources.\n\nAs you might guess, we will need the user object as part of this process. In the next step, we will add code to get a user by email.",
+      "description": "## Global token revocation\n\n*Notice that `universalLogout.js` has been opened here for you.*\n\nDuring Universal Logout, we will need to revoke all tokens and sessions for a specified user. Notice we are building the `/global-token-revocation` endpoint here according to OAuth [spec](https://datatracker.ietf.org/doc/html/draft-parecki-oauth-global-token-revocation#name-revocation-request).\n\nThis will initiate the global revocation of all tokens and sessions for a specified user enabling external Identity Providers to trigger a comprehensive sign-out process. This includes executing IdP-initiated sign-out flows across all applications that are using global token revocation and requiring users to re-authenticate to access protected resources.\n\nAs you might guess, we will need the user object as part of this process. In the next step, we will add code to get a user by email.",
       "line": 6
     },
     {
@@ -53,11 +53,11 @@
       "selection": {
         "start": {
           "line": 3,
-          "character": 1
+          "character": 96
         },
         "end": {
-          "line": 15,
-          "character": 4
+          "line": 3,
+          "character": 203
         }
       }
     }
