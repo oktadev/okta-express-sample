@@ -40,7 +40,7 @@
     },
     {
       "file": "app.js",
-      "description": "## Pass middleware to the global token revocation endpoint\n\n*Notice that `app.js` has been opened here for you.*\n\nNow we need to pass the `tokenValidator` middleware to the global token revocation endpoint on the line highlighted above. Try this on your own. Otherwise, you can click the **Insert Code** link (only click once) below to insert the code snippet that will do the job:\n\n```js\napp.use('/', tokenValidator, universalLogoutRoute);\n```\n\nClick [here](command:workbench.action.files.save) to save your changes to this file.",
+      "description": "## Pass middleware to the global token revocation endpoint\n\n*Notice that `app.js` has been opened here for you.*\n\nNow we need to pass the `tokenValidator` middleware to the global token revocation endpoint on the line highlighted above. Try this on your own. Otherwise, you can click the **Insert Code** link (only click once) below to insert the code snippet that will do the job:\n\n```js\napp.use('/logout', tokenValidator, universalLogoutRoute);\n```\n\nClick [here](command:workbench.action.files.save) to save your changes to this file.",
       "line": 103,
       "selection": {
         "start": {
