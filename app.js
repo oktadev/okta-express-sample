@@ -13,7 +13,6 @@ const codespaceName = process.env.CODESPACE_NAME;
 //UL import requirements
 const universalLogoutRoute = require('./universalLogout')
 const store  = require('./sessionStore');
-var OktaJwtVerifier = require('@okta/jwt-verifier');
 
 // source and import environment variables
 require('dotenv').config({ path: '.okta.env' })
@@ -45,15 +44,6 @@ app.use(passport.session());
 
 ///////////////////////////////////////////////////////
 // Universal Logout Route
-
-// Signed Jwt Validation
-
-// const oktaJwtVerifier = new OktaJwtVerifier({
-//   issuer: `${ORG_URL}`,
-//   jwksUri: `${ORG_URL}/oauth2/v1/keys`,
-// });
-
-// Code your custom middleware for signed JWT validation
 
 ////Universal Logout endpoint
 app.use('/', universalLogoutRoute);
