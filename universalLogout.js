@@ -2,6 +2,9 @@ var express = require('express');
 const universalLogoutRoute = express.Router();
 const store  = require('./sessionStore');
 var OktaJwtVerifier = require('@okta/jwt-verifier');
+// source and import environment variables
+require('dotenv').config({ path: '.okta.env' })
+const { ORG_URL, CLIENT_ID, CLIENT_SECRET } = process.env;
 
 universalLogoutRoute.post('/global-token-revocation', async (req, res) => {
 

@@ -6,34 +6,24 @@
     {
       "file": "universalLogout.js",
       "description": "## Global token revocation\n\n*Notice that `universalLogout.js` has been opened here for you.*\n\nDuring Universal Logout, we will need to revoke all tokens and sessions for a specified user. Notice we are building the `/global-token-revocation` endpoint here according to OAuth [spec](https://datatracker.ietf.org/doc/html/draft-parecki-oauth-global-token-revocation#name-revocation-request).\n\nThis will initiate the global revocation of all tokens and sessions for a specified user enabling external Identity Providers to trigger a comprehensive sign-out process. This includes executing IdP-initiated sign-out flows across all applications that are using global token revocation and requiring users to re-authenticate to access protected resources.\n\nAs you might guess, we will need the user object as part of this process. In the next step, we will add code to get a user by email.",
-      "line": 6
+      "line": 9
     },
     {
       "file": "universalLogout.js",
       "description": "## Find User by email\n\n*Notice that `universalLogout.js` has been opened here for you.*\n\nWe will need to add code on the highlighted line above to find a user by email based on information received from the request body. \n\nIf you can do this on your own, try it! Otherwise, you can click the **Insert Code** link (only click once) below to insert the code snippet that will do the job:\n\n```js\nconst user = req.body['sub_id']['email']\n```\n\nClick [here](command:workbench.action.files.save) to save your changes to this file.",
-      "line": 26,
-      "selection": {
-        "start": {
-          "line": 26,
-          "character": 1
-        },
-        "end": {
-          "line": 26,
-          "character": 1
-        }
-      }
+      "line": 29
     },
     {
       "file": "universalLogout.js",
       "description": "## Associate the user ID with the session object\n\n*Notice that `universalLogout.js` has been opened here for you.*\n\nNow that we have the user object, we can associate the user's ID with the session object. \n\nIn the lines above, we access a user’s session in the session store from the `express-session` library. We specifically need the `MemoryStore` object, which has already been imported on Line 3 where we import `sessionStore.js`. \n\nWe then build list of session IDs associated with the user (`sids`), which we'll use in the next step to end all of the user's active sessions.",
-      "line": 40,
+      "line": 43,
       "selection": {
         "start": {
-          "line": 33,
+          "line": 36,
           "character": 1
         },
         "end": {
-          "line": 40,
+          "line": 43,
           "character": 6
         }
       }
@@ -41,7 +31,7 @@
     {
       "file": "universalLogout.js",
       "description": "## End user's active sessions\n\nNext, we will need to loop through the list of session ids associated with the user (`sids`) and delete all active sessions associated with the user. \n\nFeel free to try this on your own. Otherwise, you can click the **Insert Code** link (only click once) below to insert the code snippet that will do the job:\n\n```js\nfor (const sid of sids) {\n    store.destroy(sid);\n  }\n```\n\nClick [here](command:workbench.action.files.save) to save your changes to this file.",
-      "line": 43
+      "line": 46
     },
     {
       "title": "Launch your app",
