@@ -11,14 +11,14 @@
     {
       "file": "universalLogout.js",
       "description": "## Find User by email\n\n*Notice that `universalLogout.js` has been opened here for you.*\n\nWe will need to add code on the highlighted line above to find a user by email based on information received from the request body. \n\nIf you can do this on your own, try it! Otherwise, you can click the **Insert Code** link (only click once) below to insert the code snippet that will do the job:\n\n```js\nconst user = req.body['sub_id']['email']\n```\n\nClick [here](command:workbench.action.files.save) to save your changes to this file.",
-      "line": 16,
+      "line": 46,
       "selection": {
         "start": {
-          "line": 16,
+          "line": 46,
           "character": 1
         },
         "end": {
-          "line": 16,
+          "line": 46,
           "character": 1
         }
       }
