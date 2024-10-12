@@ -26,14 +26,14 @@
     {
       "file": "universalLogout.js",
       "description": "## Associate the user ID with the session object\n\n*Notice that `universalLogout.js` has been opened here for you.*\n\nNow that we have the user object, we can associate the user's ID with the session object. \n\nIn the lines above, we access a user’s session in the session store from the `express-session` library. We specifically need the `MemoryStore` object, which has already been imported on Line 3 where we import `sessionStore.js`. \n\nWe then build list of session IDs associated with the user (`sids`), which we'll use in the next step to end all of the user's active sessions.",
-      "line": 30,
+      "line": 60,
       "selection": {
         "start": {
-          "line": 23,
+          "line": 53,
           "character": 1
         },
         "end": {
-          "line": 30,
+          "line": 60,
           "character": 6
         }
       }
