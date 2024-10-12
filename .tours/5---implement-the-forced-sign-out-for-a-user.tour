@@ -1,38 +1,31 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
-  "title": "5 - Redirect the user back to login",
+  "title": "4 - Redirect the user back to login",
   "nextTour": "6 - Continue adding more features to your SaaS app!",
   "steps": [
     {
       "file": "app.js",
-      "description": "## Change ensureLoggedIn\n\n*Notice the `app.js` file has been opened for you.*\n\nAlthough the user no longer has an active session as confirmed by the backend with a 401 error, we'll need to make sure this info is relayed to the frontend and the user is redirected to the main login page to reauthenticate.\n\nThe `ensureLoggedIn` function has been highlighted for you above. It automatically logs a user in when they are authenticated. If they are not authenticated, they are redirected to the login page. We don't want to log the user in automatically, instead we want them to visit the main page to login again via their IdP.\n\n\nLet's replace this function with `checkLoggedIn`. You can do this manually or click the **Insert Code** link below (only click once) to do it automatically.\n\n```js \nfunction checkLoggedIn(req, res, next) {\n if (req.isAuthenticated()) {\n   return next();\n }\n\n res.redirect('/')\n}\n```\n\nClick [here](command:workbench.action.files.save) to save your changes to this file.",
-      "line": 156,
+      "description": "## Change ensureLoggedIn\n\n*Notice the `app.js` file has been opened for you.*\n\nAlthough the user calling our Universal Logout endpoint ends our user's session, we'll need to make sure this info is relayed to the frontend and the user is redirected to the main page to reauthenticate.\n\nA line in. the `ensureLoggedIn` function has been highlighted for you above. It automatically logs a user in when they are authenticated. However, if they are not authenticated, they are currently redirected to the **/login page**. We don't want to log the user in automatically, instead we want them to visit the root (**/**) page to login again via their IdP.\n\n\nLet's replace the highlighted line in `ensureLoggedIn` so that users are redirected to the root (**/**) or main page of the app. You can do this manually or click the **Insert Code** link below (only click once) to do it automatically.\n\n```js \n res.redirect('/')\n```\n\nClick [here](command:workbench.action.files.save) to save your changes to this file.",
+      "line": 102,
       "selection": {
         "start": {
-          "line": 150,
+          "line": 102,
           "character": 1
         },
         "end": {
-          "line": 156,
+          "line": 102,
           "character": 25
         }
       },
       "title": "Change ensureLoggedIn"
     },
     {
-      "file": "app.js",
-      "description": "## Update function call\n\nLet's update the function call to `ensureLogged` in to the newly named function `checkLoggedIn`. Replace the highlighted selection above with `checkLoggedIn`.\n\nAfter you've done this, test your Universal Login functionality one more time by repeating the steps in **Tour 4 - Test token revocation with Okta**.",
-      "line": 170,
-      "selection": {
-        "start": {
-          "line": 170,
-          "character": 21
-        },
-        "end": {
-          "line": 170,
-          "character": 35
-        }
-      }
+      "title": "Relaunch your app",
+      "description": "## Relaunch your app\n\n1. Go to the Terminal tab where you initially ran the `npm start` command. Press Ctrl+C to stop its execution.\n\n1. Click [here](command:codetour.sendTextToTerminal?[\"npm start\"]) to re-run your app.\n> This issues the command `npm start` to your Terminal. \n\n1. Click on the PORTS panel within this window.\n\n1. You will see your app running on port 3000 here. Right click on this entry and select **Port visibility** > **Public**.\n\n1. Click the icon of a globe to open your app in a new tab.\n\n1. Click the **Login** button and login using the credentials you set up for **trinity@whiterabbit.fake**.\n"
+    },
+    {
+      "title": "Retest Universal Logout from the application",
+      "description": "## Retest Universal Logout from the application\n\n1. Select the **Logout** button.\n> Recall that this route uses `universalLogout`, which calls our Universal Logout endpoint.\n1. Trinity's sessions are now ended.\n1. Click on the Okta logo on the app to go to the main page. \n> The user is prompted to reauthenticate."
     }
   ]
 }

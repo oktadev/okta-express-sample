@@ -73,7 +73,7 @@
     },
     {
       "title": "Test user's session",
-      "description": "## Test user's session\n\n1. Return to the tab where you logged Trinity into your app.\n1. Refresh the page.\n>The user is no longer logged in due to the cURL request issued."
+      "description": "## Test user's session\n\n1. Return to the tab where you logged Trinity into your app.\n1. Refresh the page.\n>The user is no longer logged in due to the cURL request issued.\n\nThe cURL request from previous step resulted in a 204 response confirming that a user named Trinity exists in the database. Sure, we got a successful response, but this endpoint isn't secure! We've made it available for anyone to access. Let's fix this by adding authentication to protect this endpoint and establish trust between our server and any external service making a request to this route.\n\nUsing the OAuth 2.0 Authorization method Private key JWT, we'll need to verify that the tokens from Okta are valid. Okta has a library that can handle this for us, [Okta JWT Verifier library](https://www.npmjs.com/package/@okta/jwt-verifier). We've already installed this library for you."
     }
   ]
 }
