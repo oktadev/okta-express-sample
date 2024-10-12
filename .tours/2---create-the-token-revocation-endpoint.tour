@@ -41,7 +41,7 @@
     {
       "file": "universalLogout.js",
       "description": "## End user's active sessions\n\nNext, we will need to loop through the list of session ids associated with the user (`sids`) and delete all active sessions associated with the user. \n\nFeel free to try this on your own. Otherwise, you can click the **Insert Code** link (only click once) below to insert the code snippet that will do the job:\n\n```js\nfor (const sid of sids) {\n    store.destroy(sid);\n  }\n```\n\nClick [here](command:workbench.action.files.save) to save your changes to this file.",
-      "line": 33
+      "line": 63
     },
     {
       "title": "Launch your app",
