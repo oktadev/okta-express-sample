@@ -11,14 +11,14 @@
     {
       "file": "universalLogout.js",
       "description": "## Find User by email\n\n*Notice that `universalLogout.js` has been opened here for you.*\n\nWe will need to add code on the highlighted line above to find a user by email based on information received from the request body. \n\nIf you can do this on your own, try it! Otherwise, you can click the **Insert Code** link (only click once) below to insert the code snippet that will do the job:\n\n```js\nconst user = req.body['sub_id']['email']\n```\n\nClick [here](command:workbench.action.files.save) to save your changes to this file.",
-      "line": 46,
+      "line": 26,
       "selection": {
         "start": {
-          "line": 46,
+          "line": 26,
           "character": 1
         },
         "end": {
-          "line": 46,
+          "line": 26,
           "character": 1
         }
       }
@@ -26,14 +26,14 @@
     {
       "file": "universalLogout.js",
       "description": "## Associate the user ID with the session object\n\n*Notice that `universalLogout.js` has been opened here for you.*\n\nNow that we have the user object, we can associate the user's ID with the session object. \n\nIn the lines above, we access a user’s session in the session store from the `express-session` library. We specifically need the `MemoryStore` object, which has already been imported on Line 3 where we import `sessionStore.js`. \n\nWe then build list of session IDs associated with the user (`sids`), which we'll use in the next step to end all of the user's active sessions.",
-      "line": 60,
+      "line": 40,
       "selection": {
         "start": {
-          "line": 53,
+          "line": 33,
           "character": 1
         },
         "end": {
-          "line": 60,
+          "line": 40,
           "character": 6
         }
       }
@@ -41,7 +41,7 @@
     {
       "file": "universalLogout.js",
       "description": "## End user's active sessions\n\nNext, we will need to loop through the list of session ids associated with the user (`sids`) and delete all active sessions associated with the user. \n\nFeel free to try this on your own. Otherwise, you can click the **Insert Code** link (only click once) below to insert the code snippet that will do the job:\n\n```js\nfor (const sid of sids) {\n    store.destroy(sid);\n  }\n```\n\nClick [here](command:workbench.action.files.save) to save your changes to this file.",
-      "line": 63
+      "line": 43
     },
     {
       "title": "Launch your app",
