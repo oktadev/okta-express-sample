@@ -5,23 +5,23 @@
   "steps": [
     {
       "file": "universalLogout.js",
-      "description": "## Instantiate the OktaJwtVerifier\n\n*Notice that `universalLogout.js` has been opened here for you.*\n\nTo do instantiate the `OktaJwtVerifier`, you'll need to include the issuer (the authorization server from which we expect the signed JWT to originate) and the public keys endpoint so the library can cryptographically match the signed token with the keys used to sign it. \n\n\n**We've included these endpoints for you. Uncomment the `oktaJwtVerifier` object. Your Okta org URL is pulled from the environment variables you previously set.**\n\nNote: Using Okta as the IdP, you can find the issuer and keys endpoint information at the [Okta Org Authorization Server's metadata endpoint](https://developer.okta.com/docs/concepts/auth-servers/#org-authorization-server). \n\nIt will look something like this `https://{yourOktaDomain}/.well-known/openid-configuration` and you can visit it directly from the browser. \n\n",
+      "description": "## Instantiate the OktaJwtVerifier\n\n*Notice that `universalLogout.js` has been opened here for you.*\n\nTo do instantiate the `OktaJwtVerifier`, you'll need to include the issuer (the authorization server from which we expect the signed JWT to originate) and the public keys endpoint so the library can cryptographically match the signed token with the keys used to sign it. \n\n\n**We've included these endpoints for you. Uncomment the `oktaJwtVerifier` object. Your Okta org URL is pulled from the environment variables you previously set.**\n\n\nNote: If you are curious about where to find the keys endpoint and other OpenID Connect related endpoints, you can find them by visiting your [Okta Org Authorization Server's metadata endpoint](https://developer.okta.com/docs/concepts/auth-servers/#org-authorization-server). The metadata url will look something like this `https://{yourOktaDomain}/.well-known/openid-configuration` and you can visit it directly from the browser. \n\n",
       "line": 12,
       "selection": {
         "start": {
-          "line": 9,
+          "line": 12,
           "character": 1
         },
         "end": {
-          "line": 12,
+          "line": 15,
           "character": 25
         }
       }
     },
     {
       "file": "universalLogout.js",
-      "description": "## Add the custom token validating middleware\n\n*Notice that `universalLogout.js` has been opened here for you.*\n\nNext, create a custom middleware called, `tokenValidator`, to get the signed JWT from the `POST` request body and validate it with the Okta JWT Verifier. \n\nTo try this on your own, review the [`OktaJwtVerifier` library](https://www.npmjs.com/package/@okta/jwt-verifier) to guide you. \n\nOtherwise, you can click the **Insert Code** link (only click once) below to insert the code snippet that will do the job:\n\n```js\nconst tokenValidator = async function (req, res, next) {\n    const authHeaders = req.headers.authorization;\n    if (!authHeaders) {\n      return res.sendStatus(401);\n    }\n    const parts = authHeaders.split(' ');\n    const jwt = parts[1];\n    const expectedAud =\n      `https://${codespaceName}-3000.app.github.dev/global-token-revocation`;\n  \n    try {\n      const verifiedJwt = await oktaJwtVerifier.verifyAccessToken(\n        jwt,\n        expectedAud\n      );\n      console.log(verifiedJwt.claims);\n    } catch (err) {\n      console.log(err);\n      return res.sendStatus(401);\n    }\n  };\n```\n\nClick [here](command:workbench.action.files.save) to save your changes to this file.",
-      "line": 14
+      "description": "## Add token validation\n\n*Notice that `universalLogout.js` has been opened here for you.*\n\nNext, add some code to get the signed JWT from the `POST` request body and validate it with the Okta JWT Verifier. \n\nTo try this on your own, review the [`OktaJwtVerifier` library](https://www.npmjs.com/package/@okta/jwt-verifier) to guide you. \n\nOtherwise, you can click the **Insert Code** link (only click once) below to insert the code snippet that will do the job:\n\n```js\nconst authHeaders = req.headers.authorization;\nif (!authHeaders) {\n    return res.sendStatus(401);\n}\nconst parts = authHeaders.split(' ');\nconst jwt = parts[1];\nconst expectedAud =\n    `https://${CODESPACE_NAME}-3000.app.github.dev/global-token-revocation`;\n\ntry {\n    const verifiedJwt = await oktaJwtVerifier.verifyAccessToken(\n    jwt,\n    expectedAud\n    );\n    console.log(verifiedJwt.claims);\n} catch (err) {\n    console.log(err);\n    return res.sendStatus(401);\n}\n```\n\nClick [here](command:workbench.action.files.save) to save your changes to this file.",
+      "line": 18
     }
   ]
 }

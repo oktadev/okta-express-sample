@@ -4,7 +4,7 @@ const store  = require('./sessionStore');
 var OktaJwtVerifier = require('@okta/jwt-verifier');
 // source and import environment variables
 require('dotenv').config({ path: '.okta.env' })
-const { ORG_URL, CLIENT_ID, CLIENT_SECRET } = process.env;
+const { ORG_URL, CLIENT_ID, CLIENT_SECRET, CODESPACE_NAME} = process.env;
 
 universalLogoutRoute.post('/global-token-revocation', async (req, res) => {
 
@@ -13,7 +13,8 @@ universalLogoutRoute.post('/global-token-revocation', async (req, res) => {
   //   issuer: `${ORG_URL}`,
   //   jwksUri: `${ORG_URL}/oauth2/v1/keys`,
   // });
-  // tokenValidator
+
+  // token validation logic
 
 
 

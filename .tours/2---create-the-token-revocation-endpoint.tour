@@ -15,23 +15,23 @@
     },
     {
       "file": "universalLogout.js",
-      "description": "## Associate the user ID with the session object\n\n*Notice that `universalLogout.js` has been opened here for you.*\n\nNow that we have the user object, we can associate the user's ID with the session object. \n\nIn the lines above, we access a user’s session in the session store from the `express-session` library. We specifically need the `MemoryStore` object, which has already been imported on Line 3 where we import `sessionStore.js`. \n\nWe then build list of session IDs associated with the user (`sids`), which we'll use in the next step to end all of the user's active sessions.",
-      "line": 43,
+      "description": "## Associate the user email with the session object\n\n*Notice that `universalLogout.js` has been opened here for you.*\n\nNow that we have the user object, we can associate the user with their session. \n\nIn the lines above, we access a user’s session in the session store from the `express-session` library. We specifically need the `MemoryStore` object, which has already been imported on Line 3 where we import `sessionStore.js`. \n\nWe then build list of session IDs associated with the user (`sids`), which we'll use in the next step to end all of the user's active sessions.",
+      "line": 36,
       "selection": {
         "start": {
           "line": 36,
           "character": 1
         },
         "end": {
-          "line": 43,
-          "character": 6
+          "line": 44,
+          "character": 7
         }
       }
     },
     {
       "file": "universalLogout.js",
       "description": "## End user's active sessions\n\nNext, we will need to loop through the list of session ids associated with the user (`sids`) and delete all active sessions associated with the user. \n\nFeel free to try this on your own. Otherwise, you can click the **Insert Code** link (only click once) below to insert the code snippet that will do the job:\n\n```js\nfor (const sid of sids) {\n    store.destroy(sid);\n  }\n```\n\nClick [here](command:workbench.action.files.save) to save your changes to this file.",
-      "line": 46
+      "line": 47
     },
     {
       "title": "Launch your app",
@@ -49,7 +49,7 @@
     },
     {
       "title": "Test with cURL",
-      "description": "## Test with cURL\n\nNow test your code by making a cURL request. As per the [Global Token Revocation Specification](https://datatracker.ietf.org/doc/html/draft-parecki-oauth-global-token-revocation#name-revocation-request), we are expecting an external request to end a user's session based on the email used to sign in to the app through their IdP. The request will look like the following:\n\n```\nPOST /global-token-revocation\\\nHost: example.com\\\nContent-Type: application/json\\\n{\\\n\"sub_id\": {\\\n    \"format\": \"email\",\\\n    \"email\": \"user@example.com\"\\\n}\\\n}\n```\n\n1. Open a new terminal window, be sure to set the [port to public within Codespaces](https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace) and send the following cURL request to check your code:\n\n    ```\n    curl --request POST \\\n    --url https://{yourCodespaceUrl}-3000.app.github.dev/global-token-revocation \\\n    --header 'Content-Type: application/json' \\\n    --data '{\n    \"sub_id\": {\n        \"format\": \"email\",\n        \"email\": \"trinity@whiterabbit.fake\"\n    }\n    }'\n    ```\n\n    Switching to your other Terminal tab where you ran `npm run`, you will see that this request results in a 204 response confirming that a user named Trinity exists and her sessions have been deleted. While we got a successful response, this endpoint isn't secure; we've made it available for anyone to access! Let's fix this by adding authentication to protect this endpoint and establish trust between our server and any external service making a request to this route.",
+      "description": "## Test with cURL\n\nNow test your code by making a cURL request. As per the [Global Token Revocation Specification](https://datatracker.ietf.org/doc/html/draft-parecki-oauth-global-token-revocation#name-revocation-request), we are expecting an external request to end a user's session based on the email used to sign in to the app through their IdP. The request will look like the following:\n\n```\nPOST /global-token-revocation\nHost: example.com\nContent-Type: application/json\n{\n\"sub_id\": {\n    \"format\": \"email\",\n    \"email\": \"user@example.com\"\n}\n}\n```\n\n1. Open a new terminal window, be sure to set the [port to public within Codespaces](https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace) and send the following cURL request to check your code. Note to send this request you'll need to manually add your Codespace URL.\n\n    ```\n    curl --request POST \\\n    --url https://{yourCodespaceUrl}/global-token-revocation \\\n    --header 'Content-Type: application/json' \\\n    --data '{\n    \"sub_id\": {\n        \"format\": \"email\",\n        \"email\": \"trinity@whiterabbit.fake\"\n    }\n    }'\n    ```\n\n    Switching to your other Terminal tab where you lauched your app or ran `npm start`, you will see that this request results in a 204 response confirming that a user named Trinity exists and her sessions have been deleted. While we got a successful response, this endpoint isn't secured by any authentication protocol; we've made it available for anyone to access! Let's fix this by adding authentication to protect this endpoint and establish trust between our server and any external service making a request to this route.",
       "selection": {
         "start": {
           "line": 3,
