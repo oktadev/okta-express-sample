@@ -1,23 +1,75 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
   "title": "1 - Get the sample app up and running",
+  "nextTour": "2 - Build a Universal Logout endpoint to find a user and their active sessions",
   "steps": [
     {
       "title": "Prerequisites",
-      "description": "We will build the Universal Logout (UL) endpoint on [an express sample app](https://github.com/oktadev/okta-express-universal-logout-lab) with OIDC support implemented. Go to the ul-lab-start branch and open codespaces. You can find the completed branch here [ul-lab-complete](https://github.com/oktadev/okta-express-universal-logout-lab/tree/ul-lab-complete).\n\nTroubleshooting tips: Before you begin, ensure you can run the sample application. We will add some code and test it along the way. \n\nOpen up the terminal within Codespaces and run the application with the following command\n\n`npm start`\n\nor\n\nClick [here](command:workbench.action.debug.start)"
+      "description": "## Prerequisites\n\nThis workspace contains an Express sample app with OIDC support implemented. In this lab, we will build the Universal Logout (UL) endpoint for this app.\n\n### Troubleshooting: \nAs we move through the lab and edit the app, we will test it incrementally."
     },
     {
-      "title": "Sign up with Okta",
-      "description": "In the Okta Heropa VM, open the credentials panel by clicking the arrow to the right of the window. From here, you will get a link to your Oktapreview Org with your username and login. Open a new in-cognito browser window outside of the VM and login to your Okta account using the credentials provided.\n\nOnce you've logged in, you'll also need to create an OIDC application, which you can do by following the instructions listed here under [Setup your app](https://developer.okta.com/docs/guides/implement-grant-type/authcode/main/#set-up-your-app). In the OIDC application setup, be sure to set the Sign-in redirect URI as https://${CODESPACENAME}-3000.app.github.dev/authorization-code/callback. You can get the CODESPACENAME by entering echo \"https://${CODESPACE_NAME}-3000.app.github.dev/authorization-code/callback\" to the terminal or copy the url from the browser directly. Under Assignments > Controlled access select `Skip group assignment for now`. Remember to click `Save` when you are done! Lastly, save your client_id and client_secret, you'll need it in the next steps."
+      "title": "Set up an OIDC app integration in Okta",
+      "description": "## Set up an OIDC app integration in Okta\n\nIn the Okta Heropa VM, open the credentials panel by clicking the arrow to the right of the window. From here, you will get a link to your Okta preview org with your username and login. Open a new incognito browser window outside of the VM and login to your Okta account using the credentials provided.\n\nOnce you've logged in, you'll also need to create an OIDC application, which you can do by following the instructions listed here under [Set up your app](https://developer.okta.com/docs/guides/implement-grant-type/authcode/main/#set-up-your-app).  \n\n### When you get to the step for setting the Sign-in redirect URIs (Step 7), do the following: \n\n1. Click [here](command:codetour.sendTextToTerminal?[\"echo https://$CODESPACE_NAME-3000.app.github.dev/authorization-code/callback\"]) and copy the URL that prints here in the Terminal. \n>Note this runs the following command: `echo https://${CODESPACE_NAME}-3000.app.github.dev/authorization-code/callback`.\n\n2. Paste the URL into the **Sign-in** redirect URIs field in your Okta app integration form.\n\n1. Click [here](command:codetour.sendTextToTerminal?[\"echo https://$CODESPACE_NAME-3000.app.github.dev\"]) and copy the URL that prints here in the Terminal. \n>Note this runs the following command: `echo https://${CODESPACE_NAME}-3000.app.github.dev`.\n\n2. Paste the URL into the **Sign-out** redirect URIs field in your Okta app integration form.\n\n\n3. Under **Assignments > Controlled** access select **Skip group assignment for now**.\n\n4. Remember to click **Save** when you are done!\n\n5. ⚠️ **Important**: Notice that you now see your app's client credentials. Stay on this page. You will use the Client ID and Client Secret for the following step.",
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 0
+        },
+        "end": {
+          "line": 1,
+          "character": 42
+        }
+      }
     },
     {
       "file": ".okta.env",
-      "description": "Add your OIDC integration details (i.e. your Okta org, your OIDC app client id and secret) to the `.okta.env file`. All variables must be saved as strings.\n",
-      "line": 1
+      "description": "## Update ORG_URL environment variable\n\nNotice that the `.okta.env` file has been opened for you. Let's update the `OKTA_ORG_URL` environment variable.\n\nRecall that can copy your Okta org's URL from the side panel in your VM under **Link**.\n\nThe value of this variable should be a string of the form: `\"https://oktaice#######.oktapreview.com\"`",
+      "line": 1,
+      "title": "Update ORG_URL environment variable",
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 1
+        },
+        "end": {
+          "line": 1,
+          "character": 39
+        }
+      }
+    },
+    {
+      "file": ".okta.env",
+      "description": "## Update CLIENT_ID and CLIENT_SECRET environment variables\n\nNotice that the `.okta.env` file has been opened for you. Using the client credentials details on your Okta app's OIDC integration page, update the **CLIENT_ID** and **CLIENT_SECRET** environment variables. All variable must be stored as strings.\n\nClick [here](command:workbench.action.files.save) to save your changes to this file.",
+      "line": 3,
+      "title": "Update environment variables: OKTA_CLIENT_ID and OKTA_CLIENT_SECRET",
+      "selection": {
+        "start": {
+          "line": 2,
+          "character": 1
+        },
+        "end": {
+          "line": 3,
+          "character": 39
+        }
+      }
     },
     {
       "title": "Create a test user",
-      "description": "To test whether UL works for our app, we'll create a new user on Okta whose account we will forcibly sign out. \nOpen the Admin Console for your org, and go to Directory > People. \n\nClick Add Person and create a person with the following properties:\\\nUser type: User\\\nFirst name: Trinity\\\nLast name: Anderson\\\nUsername: trinity@whiterabbit.fake\\\nActivation: Activate now\\\nEnable the option I will set password > Enter a password of your choice, and click Save.\n\nRefresh the page and click on Trinity Anderson's profile. And under the Applications tab assign the OIDC app you created for this project to this user. \n\nNow with the web app running try to login with this test user. "
+      "description": "## Create a test user\n\nTo test whether Universal Logout works for our app, we'll create a new user on Okta whose account we will forcibly sign out. \n\n\n1. If you aren't already, sign in to your Okta org's Admin Console. \n2. Go to **Directory > People**. \n3. Select **Add Person**.\n4. Create a user  with the following properties:\n\n    >User type: **User**\n\n    >First name: **Trinity**\n\n    >Last name: **Anderson**\n\n    >Username: **trinity@whiterabbit.fake**\n\n    >Activation: **Activate now**\n\n5. Enable the option **I will set password**.\n6. Enter a password of your choice. (Tip: You can use the password in the side panel of your VM).\n7. Uncheck **User must change password on first login**.\n8. Select **Save**.\n\nRefresh the page and click on Trinity Anderson's profile. And under the Applications tab assign the OIDC app you created for this project to this user. \n\nNow with the web app running try to login with this test user. ",
+      "selection": {
+        "start": {
+          "line": 11,
+          "character": 1
+        },
+        "end": {
+          "line": 19,
+          "character": 34
+        }
+      }
+    },
+    {
+      "title": "Assign user the app",
+      "description": "## Assign user the app\n\n1. Select the new user **Trinity Anderson** you just created (you may need to refresh the page to see the new user).\n1. Select **Assign Applications**.\n1. Assign this user the **UL App**\n1. Select **Save and Go Back**."
     }
   ]
 }

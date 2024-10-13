@@ -1,18 +1,29 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
-  "title": "4 - Test with Okta",
+  "title": "5 - Test token revocation endpoint with Okta",
+  "nextTour": "4 - Redirect the user back to login",
   "steps": [
     {
-      "title": "Test the endpoint",
-      "description": "Now that the app has a secure, working UL endpoint. In this section, we'll test the endpoint with Okta.\n\nIn your Codespaces VM, on the PORTS tab set the [port visibility to public](https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace). This allows requests from Okta to be forwarded to the public address provided by GitHub Codespaces."
+      "title": "Log into test user account",
+      "description": "## Log into test user account\n\nYour app is still running from the last section. \n\n1. Click the **Login** button and login using the credentials you set up for **trinity@whiterabbit.fake**."
     },
     {
       "title": "Provide revocation endpoint info to the Okta",
-      "description": "Log in to your Okta dashboard, and under your UL App, go to the General tab. Within the General tab, look for the Logout > Global token revocation endpoint section and enable the `Okta system or admin initiates logout option` and add your GTR endpoint URL with your Codespace URL, for example, `https://expert-garbanzo-p5qv94qr7jf4vr-3000.app.github.dev/global-token-revocation`. Set the `Subject format` `to Email Identifier`, and Auth method to \"Signed JWT.\" Meaning Okta will send a request identifying the user with the email used to SSO into the OIDC webb app. Okta will authenticate to your UL endpoint with the secure OAuth method Signed JWT. And finally save your changes.\n\nNote: In your tokenValidator middleware be sure to update the `expectedAud` to match the base URL provided by Codespaces, it will look like [this](https://github.com/oktadev/okta-express-universal-logout-lab/blob/cd7e9473c7a6fc6c8eec0ebcd9183b7fe49054b9/app.js#L59)."
+      "description": "## Provide the token revocation endpoint to Okta\n\n1. Log in to your Okta Admin Dashboard in an incognito browser or a separate browser.\n\n1. Go to **Applications > Applications** and select your UL App integration.\n\n1. Under the General tab, scroll down to the **Logout** section.\n\n1. Under **Global token revocation**, select **Edit** and select the **Okta system or admin initiates logout** option.\n\n1. Click [here](command:codetour.sendTextToTerminal?[\"echo https://$CODESPACE_NAME-3000.app.github.dev/global-token-revocation\"]) and copy the URL that prints here in the Terminal. This is your  global token revocation endpoint URL.\n\n1. In the **Endpoint URL** field, paste your global token revocation endpoint URL.\n\n1. Set **Endpoint authentication type** to **Signed JWT**.\n1. Set the **Subject format** to **Email Identifier**\n> This means Okta will send a request identifying the user with the email used to SSO into the OIDC webb app. Okta will authenticate to your Universal Logout endpoint with the secure OAuth2.0 method signed JWT. \n\n1. Select the **Save** button.\n"
     },
     {
-      "title": "End a user's session through Okta",
-      "description": "From the Admin Console, go to Directory > People, and find the user you whose session you want to delete. For example, let's end the user session for \"trinity@whiterabbit.fake.\" To do this, click on their profile, click  More Actions, and then Clear User Sessions. Check the option `\"Also include logout enabled apps and Okta API tokens before clicking Clear and revoke\"`. You'll receive a sessions cleared and tokens revoked response.\n\nNow, navigate to the web app and click on the Okta icon to return to the main page. At this point, the user's session has been deleted, but the front end doesn't yet know about the user's state. "
+      "title": "End the user's session through the Okta Admin Dashboard",
+      "description": "## End the user's session through the Okta Admin Dashboard\n\n1. From the Okta Admin Console, go to **Directory > People**.\n1. Search for and select the user **Trinity Anderson**.\n1. Select **More Actions** and then **Clear User Sessions**. \n1. On the pop-up, check the option **Also include logout enabled apps and Okta API tokens before clicking Clear and revoke**. \n1. Select the **Clear and revoke** button.\n> You'll receive a response that says: \"Sessions cleared and tokens revoked.\"\n\n1. Go to the tab where you signed Trinity into your web app and refresh the page.\n> At this point, the user's session has been deleted. If you return to the main page by clicking the Okta logo on the app, the user is prompted to reauthenticate. When you click Login again, you should see that your Okta session had been revoked due to activity that triggered a security alert.",
+      "selection": {
+        "start": {
+          "line": 11,
+          "character": 55
+        },
+        "end": {
+          "line": 11,
+          "character": 163
+        }
+      }
     }
   ]
 }

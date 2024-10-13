@@ -13,7 +13,6 @@ const codespaceName = process.env.CODESPACE_NAME;
 //UL import requirements
 const universalLogoutRoute = require('./universalLogout')
 const store  = require('./sessionStore');
-var OktaJwtVerifier = require('@okta/jwt-verifier');
 
 // source and import environment variables
 require('dotenv').config({ path: '.okta.env' })
@@ -36,7 +35,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'CanYouLookTheOtherWay',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  store
 }));
 
 app.use(passport.initialize());
@@ -45,20 +45,11 @@ app.use(passport.session());
 ///////////////////////////////////////////////////////
 // Universal Logout Route
 
-// Signed Jwt Validation
-
-// const oktaJwtVerifier = new OktaJwtVerifier({
-//   issuer: 'https://{yourOktaDomain}.com',
-//   jwksUri: 'https://{yourOktaDomain}.com/oauth2/v1/keys',
-// });
-
-// Code your custom middleware for signed JWT validation
-
 ////Universal Logout endpoint
 app.use('/', universalLogoutRoute);
 
 // https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfigurationRequest
-let logout_url, id_token;
+let logout_url, id_token, access_token;
 let _base = ORG_URL.slice(-1) == '/' ? ORG_URL.slice(0, -1) : ORG_URL;
 axios
   .get(`${_base}/.well-known/openid-configuration`)
@@ -83,6 +74,7 @@ axios
           accessToken, refreshToken, params
         }, null, 2)}\n*****`);
         id_token = idToken;
+        access_token = accessToken;
         return done(null, profile);
       }));
     }

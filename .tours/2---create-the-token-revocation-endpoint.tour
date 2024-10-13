@@ -1,35 +1,69 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
   "title": "2 - Build a Universal Logout endpoint to find a user and their active sessions",
+  "nextTour": "3 - Allow only authorized access to the endpoint",
   "steps": [
     {
       "file": "universalLogout.js",
-      "description": "Add code here to find a user based on information received from the request body. Try on your own or find the [completed code here](https://github.com/oktadev/okta-express-universal-logout-lab/blob/f63e61fab95e94111324b0d87704391aef4c0fdb/universalLogout.js#L14). ",
-      "line": 16
+      "description": "## Global token revocation\n\n*Notice that `universalLogout.js` has been opened here for you.*\n\nDuring Universal Logout, we will need to revoke all tokens and sessions for a specified user. Notice we are building the `/global-token-revocation` endpoint here according to OAuth [spec](https://datatracker.ietf.org/doc/html/draft-parecki-oauth-global-token-revocation#name-revocation-request).\n\nThis will initiate the global revocation of all tokens and sessions for a specified user enabling external Identity Providers to trigger a comprehensive sign-out process. This includes executing IdP-initiated sign-out flows across all applications that are using global token revocation and requiring users to re-authenticate to access protected resources.\n\nAs you might guess, we will need the user object as part of this process. In the next step, we will add code to get a user by email.",
+      "line": 9
     },
     {
       "file": "universalLogout.js",
-      "description": "Now that we have the user object, we can associate the user's user ID with the session object.\n\nIn Express, we’ll need to access a user’s session in the session store from the express-session library. We specifically need the MemoryStore object, which has already been imported in this file.",
-      "line": 23
+      "description": "## Find User by email\n\n*Notice that `universalLogout.js` has been opened here for you.*\n\nWe will need to add code on the highlighted line above to find a user by email based on information received from the request body. \n\nIf you can do this on your own, try it! Otherwise, you can click the **Insert Code** link (only click once) below to insert the code snippet that will do the job:\n\n```js\nconst user = req.body['sub_id']['email']\n```\n\nClick [here](command:workbench.action.files.save) to save your changes to this file.",
+      "line": 29
     },
     {
       "file": "universalLogout.js",
-      "description": "Loop through the list of `sids` and delete all active sessions associated with the user. Try on your own or find the [completed code here](https://github.com/oktadev/okta-express-universal-logout-lab/blob/f63e61fab95e94111324b0d87704391aef4c0fdb/universalLogout.js#L32). ",
-      "line": 33,
+      "description": "## Associate the user ID with the session object\n\n*Notice that `universalLogout.js` has been opened here for you.*\n\nNow that we have the user object, we can associate the user's ID with the session object. \n\nIn the lines above, we access a user’s session in the session store from the `express-session` library. We specifically need the `MemoryStore` object, which has already been imported on Line 3 where we import `sessionStore.js`. \n\nWe then build list of session IDs associated with the user (`sids`), which we'll use in the next step to end all of the user's active sessions.",
+      "line": 43,
+      "selection": {
+        "start": {
+          "line": 36,
+          "character": 1
+        },
+        "end": {
+          "line": 43,
+          "character": 6
+        }
+      }
+    },
+    {
+      "file": "universalLogout.js",
+      "description": "## End user's active sessions\n\nNext, we will need to loop through the list of session ids associated with the user (`sids`) and delete all active sessions associated with the user. \n\nFeel free to try this on your own. Otherwise, you can click the **Insert Code** link (only click once) below to insert the code snippet that will do the job:\n\n```js\nfor (const sid of sids) {\n    store.destroy(sid);\n  }\n```\n\nClick [here](command:workbench.action.files.save) to save your changes to this file.",
+      "line": 46
+    },
+    {
+      "title": "Launch your app",
+      "description": "## Launch your app\n\n1. Click [here](command:codetour.sendTextToTerminal?[\"npm start\"]) to run your app.\n> This issues the command `npm start` to your Terminal. \n\n1. Click on the PORTS panel within this window.\n\n1. You will see your app running on port 3000 here. Right click on this entry and select **Port visibility** > **Public**.\n\n1. Click the icon of a globe to open your app in a new tab.\n\n1. **Ensure you are logged out of the Okta Admin Dashboard**. Click the **Login** button and login using the credentials you set up for **trinity@whiterabbit.fake**.",
       "selection": {
         "start": {
           "line": 1,
-          "character": 90
+          "character": 1
         },
         "end": {
-          "line": 1,
-          "character": 105
+          "line": 12,
+          "character": 107
         }
       }
     },
     {
       "title": "Test with cURL",
-      "description": "Now test your code by making a cURL request. As per the [Global Token Revocation Specification](https://datatracker.ietf.org/doc/html/draft-parecki-oauth-global-token-revocation#name-revocation-request), we are expecting an external request to end a user's session based on the email used to sign in to the app through their IdP. The request will look like the following:\n\n\nPOST /global-token-revocation\\\nHost: example.com\\\nContent-Type: application/json\\\n{\\\n  \"sub_id\": {\\\n    \"format\": \"email\",\\\n    \"email\": \"user@example.com\"\\\n  }\\\n}\n\nOpen a new terminal window, be sure to set the [port to public within Codespaces](https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace) and send the following cURL request to check your code. \n\n```\ncurl --request POST \\\n  --url http://{yourCodespaceUrl}-3000.app.github.dev/global-token-revocation/global-token-revocation \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n  \"sub_id\": {\n    \"format\": \"email\",\n    \"email\": \"trinity@whiterabbit.fake\"\n  }\n}'\n```\n\nThis request will result in a 204 response confirming that a user named Trinity exists and her sessions have been deleted. And sure, we got a successful response, but what is wrong here? This endpoint isn't secure; we've made it available for anyone to access. Let's fix this by adding authentication to protect this endpoint and establish trust between our server and any external service making a request to this route."
+      "description": "## Test with cURL\n\nNow test your code by making a cURL request. As per the [Global Token Revocation Specification](https://datatracker.ietf.org/doc/html/draft-parecki-oauth-global-token-revocation#name-revocation-request), we are expecting an external request to end a user's session based on the email used to sign in to the app through their IdP. The request will look like the following:\n\n```\nPOST /global-token-revocation\\\nHost: example.com\\\nContent-Type: application/json\\\n{\\\n\"sub_id\": {\\\n    \"format\": \"email\",\\\n    \"email\": \"user@example.com\"\\\n}\\\n}\n```\n\n1. Open a new terminal window, be sure to set the [port to public within Codespaces](https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace) and send the following cURL request to check your code:\n\n    ```\n    curl --request POST \\\n    --url https://{yourCodespaceUrl}-3000.app.github.dev/global-token-revocation \\\n    --header 'Content-Type: application/json' \\\n    --data '{\n    \"sub_id\": {\n        \"format\": \"email\",\n        \"email\": \"trinity@whiterabbit.fake\"\n    }\n    }'\n    ```\n\n    Switching to your other Terminal tab where you ran `npm run`, you will see that this request results in a 204 response confirming that a user named Trinity exists and her sessions have been deleted. While we got a successful response, this endpoint isn't secure; we've made it available for anyone to access! Let's fix this by adding authentication to protect this endpoint and establish trust between our server and any external service making a request to this route.",
+      "selection": {
+        "start": {
+          "line": 3,
+          "character": 96
+        },
+        "end": {
+          "line": 3,
+          "character": 203
+        }
+      }
+    },
+    {
+      "title": "Test user's session",
+      "description": "## Test user's session\n\n1. Return to the tab where you logged Trinity into your app.\n1. Refresh the page.\n>The user no longer appears logged in due to the cURL request issued. The application session has ended.\n\n1. Click **Login** again and enter Trinity's username. \n> Notice that you are authenticated without needing to enter your password. This is because the Okta session is still live. We'll fix this soon.\n\nThe cURL request from previous step resulted in a 204 response confirming that a user named Trinity exists in the database. Sure, we got a successful response, but this endpoint isn't secure! We've made it available for anyone to access. Let's fix this by adding authentication to protect this endpoint and establish trust between our server and any external service making a request to this route.\n\nUsing the OAuth 2.0 Authorization method Private key JWT, we'll need to verify that the tokens from Okta are valid. Okta has a library that can handle this for us, [Okta JWT Verifier library](https://www.npmjs.com/package/@okta/jwt-verifier). We've already installed this library for you."
     }
   ]
 }

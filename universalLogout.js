@@ -1,9 +1,22 @@
 var express = require('express');
 const universalLogoutRoute = express.Router();
 const store  = require('./sessionStore');
-
+var OktaJwtVerifier = require('@okta/jwt-verifier');
+// source and import environment variables
+require('dotenv').config({ path: '.okta.env' })
+const { ORG_URL, CLIENT_ID, CLIENT_SECRET } = process.env;
 
 universalLogoutRoute.post('/global-token-revocation', async (req, res) => {
+
+  // JWT Verification
+  // const oktaJwtVerifier = new OktaJwtVerifier({
+  //   issuer: `${ORG_URL}`,
+  //   jwksUri: `${ORG_URL}/oauth2/v1/keys`,
+  // });
+  // tokenValidator
+
+
+
   // 204 When the request is successful
   const httpStatus = 204;
 
@@ -42,6 +55,5 @@ universalLogoutRoute.use((err,req,res,next) => {
     return res.sendStatus(404)
   }
 })
-
 
 module.exports = universalLogoutRoute;

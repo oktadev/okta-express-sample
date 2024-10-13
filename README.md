@@ -1,53 +1,9 @@
-# Node.js Express Quickstart Sample Code for Integrating with Okta using the Redirect Model
+![img](https://cdn.auth0.com/website/auth0-training/auth0-labs-ext/oktane24.png)
+# Lab: Universal Logout: Instantly Sign Out a User Across All Your Apps
 
-This repository contains a sample of integrating with [Okta](https://www.okta.com/) for authentication using [the redirect model in a Node.js Express app](https://developer.okta.com/docs/guides/sign-into-web-app-redirect/node-express/main/).
+This repository contains a sample application, which you will use to learn about implementing Universal Logout endpoint to end all sessions for a user.
 
-Read more about getting started with Okta and authentication best practices on the [Okta Developer Portal](https://developer.okta.com).
-
-This code sample demonstrates
-* Configuring Okta
-* Sign-in and sign-out
-* Protecting routes
-* Displaying user profile information from the ID Token
-
-## Prerequisites
-
-Before running this sample, you will need the following:
-
-* [The Okta CLI Tool](https://github.com/okta/okta-cli#installation)
-* An Okta Developer Account (create one using `okta register`, or configure an existing one with `okta login`)
-
-## Get the Code
-
-Grab and configure this project using `okta start express`.
-
-Follow the instructions printed to the console. See the next section to enable Refresh Tokens.
-
-## Enable Refresh Token
-
-Manually enable Refresh Token on your Okta application to avoid third-party cookies. Sign in to your Okta Developer Edition account. Press the **Admin Console** button to navigate to the Okta Admin Console. In the sidenav, navigate to **Applications** > **Applications** and find the Okta application for this project named `okta-express-sample`. Edit the application's **General Setting** to enable the **Refresh Token** checkbox. **Save** your changes.
-
-## Run the Example
-
-To run this application, install its dependencies:
-
-```
-npm install
-```
-
-With variables set, start your app:
-
-```
-npm start
-```
-
-Navigate to http://localhost:3000 in your browser.
-
-If you see a home page that prompts you to login, then things are working!  Clicking the **Log in** button will redirect you to the Okta hosted sign-in page.
-
-You can sign in with the same account that you created when signing up for your Developer Org, or you can use a known username and password from your Okta Directory.
-
-> **Note:** If you are currently using your Developer Console, you already have a Single Sign-On (SSO) session for your Org.  You will be automatically logged into your application as the same user that is using the Developer Console.  You may want to use an incognito tab to test the flow from a blank slate.
+This lab is meant to be completed within GitHub Codespaces. Once you open this repo in a Codespace, you can get started with this lab by expanding the **CODETOUR** panel at the bottom left of this environment and starting with the first step of Tour 0.
 
 ## Helpful resources
 

@@ -29,6 +29,8 @@ server.listen(port, () => console.log(`Listening at http://localhost:${port}`));
 server.on('error', onError);
 server.on('listening', onListening);
 
+
+
 /**
  * Normalize a port into a number, string, or false.
  */
@@ -87,4 +89,8 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
+  if(process.env.CODESPACE_NAME){
+    console.log(`Codespaces URL: https://${process.env.CODESPACE_NAME}-3000.app.github.dev`);
+  }
+ 
 }
