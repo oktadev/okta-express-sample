@@ -9,7 +9,7 @@
     },
     {
       "title": "Sign in to the Okta Admin Dashboard",
-      "description": "## Sign in to the Okta Admin Dashboard\n\n1. Go to the tab wherw you are logged into the Okta Heropa VM.\n2. Open the credentials panel by clicking the arrow to the right of the window. \n3. Copy the **Link** yo your Okta preview org.\n4. Open an **incognito** browser window on your local machine (not the VM) and paste the Okta preview org link. \n>It's important to use an incognito browser window to log in as Admin as we will using another non-incognito browser window to log in as an end user later.\n5. Log in as **oktatraining** using the credentials provided in the credentials panel in Heropa."
+      "description": "## Sign in to the Okta Admin Dashboard\n\n1. Go to the tab wherw you are logged into the Okta Heropa VM.\n2. Open the credentials panel by clicking the arrow to the right of the window. \n3. Copy the **Link** to your Okta preview org.\n4. Open an **incognito** browser window on your local machine (not the VM) and paste the Okta preview org link. \n>It's important to use an incognito browser window to log in as Admin as we will using another non-incognito browser window to log in as an end user later.\n5. Log in as **oktatraining** using the credentials provided in the credentials panel in Heropa."
     },
     {
       "title": "Set up an OIDC app integration in Okta",
