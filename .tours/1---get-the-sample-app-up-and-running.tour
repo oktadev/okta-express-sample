@@ -73,7 +73,7 @@
     },
     {
       "title": "Assign user the app",
-      "description": "## Assign user the app\n\n1. Select the new user **Trinity Anderson** you just created (you may need to refresh the page to see the new user).\n1. Select **Assign Applications**.\n1. Assign this user the **UL App**\n1. Select **Save and Go Back**."
+      "description": "## Assign user the app\n\n1. Select the new user **Trinity Anderson** you just created (you may need to refresh the page to see the new user).\n1. Select **Assign Applications**.\n1. Assign this user the **UL App**\n1. Select **Save and Go Back**.\n1. Select **Done**."
     }
   ]
 }
