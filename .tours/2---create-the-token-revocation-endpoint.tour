@@ -35,7 +35,7 @@
     },
     {
       "title": "Launch your app",
-      "description": "## Launch your app\n\n1. Click [here](command:codetour.sendTextToTerminal?[\"npm start\"]) to run your app.\n> This issues the command `npm start` to your Terminal. \n\n1. Click on the PORTS panel within this window.\n\n1. You will see your app running on port 3000 here. Right click on this entry and select **Port visibility** > **Public**.\n\n1. Click the icon of a globe to open your app in a new tab.\n\n1. **Ensure you are logged out of the Okta Admin Dashboard**. Click the **Login** button and login using the credentials you set up for **trinity@whiterabbit.fake**.",
+      "description": "## Launch your app\n\n1. Click [here](command:codetour.sendTextToTerminal?[\"npm start\"]) to run your app.\n> This issues the command `npm start` to your Terminal. \n\n1. Click on the PORTS panel within this window.\n\n1. You will see your app running on port 3000 here. Right click on this entry and select **Port visibility** > **Public**.\n\n1. Click the icon of a globe to open your app in a new tab.\n\n1. Click the **Login** button and login using the credentials you set up for **trinity@whiterabbit.fake**.",
       "selection": {
         "start": {
           "line": 1,
