@@ -16,8 +16,6 @@ universalLogoutRoute.post('/global-token-revocation', async (req, res) => {
 
   // token validation logic
 
-
-
   // 204 When the request is successful
   const httpStatus = 204;
 
@@ -43,6 +41,7 @@ universalLogoutRoute.post('/global-token-revocation', async (req, res) => {
     }
   });
 
+  
 // Add your code here to end a user's session
 
 //console.log('User session deleted')
