@@ -4,12 +4,16 @@
   "nextTour": "4 - Redirect the user back to login",
   "steps": [
     {
-      "title": "Relaunch your app",
-      "description": "## Relaunch your app\n\n1. Go to the Terminal tab where you initially ran the `npm start` command. Press Ctrl+C to stop its execution.\n\n1. Click [here](command:codetour.sendTextToTerminal?[\"npm start\"]) to re-run your app.\n> This issues the command `npm start` to your Terminal. \n\n1. Click on the PORTS panel within this window.\n\n1. You will see your app running on port 3000 here. Right click on this entry and select **Port visibility** > **Public**.\n\n1. Click the icon of a globe to open your app in a new tab.\n\n1. Click the **Login** button and login using the credentials you set up for **trinity@whiterabbit.fake**.\n"
+      "title": "Stop the app",
+      "description": "## Stop the app \n1. Go to the terminal tab where you ran `npm start` and press Ctrl+C to stop the app."
     },
     {
       "title": "Provide revocation endpoint info to the Okta",
       "description": "## Provide the token revocation endpoint to Okta\n\n1. In an **incognito browser**, log in to your Okta Admin Dashboard.\n\n1. Go to **Applications > Applications** and select your UL App integration.\n\n1. Under the General tab, scroll down to the **Logout** section.\n\n1. Under **Global token revocation**, select **Edit** and select the **Okta system or admin initiates logout** option.\n\n1. Click [here](command:codetour.sendTextToTerminal?[\"echo https://$CODESPACE_NAME-3000.app.github.dev/global-token-revocation\"]) and copy the URL that prints here in the Terminal. This is your  global token revocation endpoint URL.\n\n1. In the **Endpoint URL** field, paste your global token revocation endpoint URL.\n\n1. Set **Endpoint authentication type** to **Signed JWT**.\n1. Set the **Subject format** to **Email Identifier**\n> This means Okta will send a request identifying the user with the email used to SSO into the OIDC webb app. Okta will authenticate to your Universal Logout endpoint with the secure OAuth2.0 method signed JWT. \n\n1. Select the **Save** button.\n"
+    },
+    {
+      "title": "Relaunch your app",
+      "description": "## Relaunch your app\n\n1. Click [here](command:codetour.sendTextToTerminal?[\"npm start\"]) to re-run your app.\n> This issues the command `npm start` to your Terminal. \n\n1. Click on the PORTS panel within this window.\n\n1. You will see your app running on port 3000 here. Right click on this entry and select **Port visibility** > **Public**.\n\n1. Click the icon of a globe to open your app in a new tab.\n\n1. Click the **Login** button and login using the credentials you set up for **trinity@whiterabbit.fake**.\n"
     },
     {
       "title": "End the user's session through the Okta Admin Dashboard",

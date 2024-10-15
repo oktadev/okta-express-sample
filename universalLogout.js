@@ -44,7 +44,6 @@ universalLogoutRoute.post('/global-token-revocation', async (req, res) => {
   
 // Add your code here to end a user's session
 
-//console.log('User session deleted')
 
   return res.sendStatus(httpStatus);
 });

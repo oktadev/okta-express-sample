@@ -21,7 +21,7 @@
     {
       "file": "universalLogout.js",
       "description": "## Add token validation\n\n*Notice that `universalLogout.js` has been opened here for you.*\n\nNext, add some code to get the signed JWT from the `POST` request body and validate it with the Okta JWT Verifier. \n\nTo try this on your own, review the [`OktaJwtVerifier` library](https://www.npmjs.com/package/@okta/jwt-verifier) to guide you. \n\nOtherwise, you can click the **Insert Code** link (only click once) below to insert the code snippet that will do the job:\n\n```js\nconst authHeaders = req.headers.authorization;\nif (!authHeaders) {\n    return res.sendStatus(401);\n}\nconst parts = authHeaders.split(' ');\nconst jwt = parts[1];\nconst expectedAud =\n    `https://${CODESPACE_NAME}-3000.app.github.dev/global-token-revocation`;\n\ntry {\n    const verifiedJwt = await oktaJwtVerifier.verifyAccessToken(\n    jwt,\n    expectedAud\n    );\n    console.log(verifiedJwt.claims);\n} catch (err) {\n    console.log(err);\n    return res.sendStatus(401);\n}\n```\n\nClick [here](command:workbench.action.files.save) to save your changes to this file.",
-      "line": 17
+      "line": 18
     }
   ]
 }
